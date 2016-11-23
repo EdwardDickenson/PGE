@@ -1,0 +1,179 @@
+#include "draw.hpp"
+
+void draw(Square &square)
+{
+	glEnable(GL_TEXTURE_2D);
+
+	glMatrixMode(GL_MODELVIEW);
+
+	glBegin(GL_QUADS);
+	glLoadIdentity();
+
+	double length = square.getLength();
+	Coordinate position = square.getPosition();
+	rgbColor *color = square.getColor();
+	double x = position.getX();
+	double y = position.getY();
+
+	glColor3d(color[0].getR(), color[0].getG(), color[0].getB());
+	glTexCoord2d(x, y);
+	glVertex2d(x, y);
+
+	glColor3d(color[1].getR(), color[1].getG(), color[1].getB());
+	glTexCoord2d(x - length, y);
+	glVertex2d(x - length, y);
+
+	glColor3d(color[2].getR(), color[2].getG(), color[2].getB());
+	glTexCoord2d(x - length, y - length);
+	glVertex2d(x - length, y - length);
+
+	glColor3d(color[3].getR(), color[3].getG(), color[3].getB());
+	glTexCoord2d(x, y - length);
+	glVertex2d(x, y - length);
+
+	glEnd();
+}
+
+void draw(Square *squares, size_t argc)
+{
+	glEnable(GL_TEXTURE_2D);
+
+	glMatrixMode(GL_MODELVIEW);
+
+	glBegin(GL_QUADS);
+	glLoadIdentity();
+
+	double length;
+	Coordinate position;
+	rgbColor *color;
+	double x;
+	double y;
+
+	for(size_t i = 0; i < argc; ++i)
+	{
+		length = squares[i].getLength();
+		position = squares[i].getPosition();
+		color = squares[i].getColor();
+		x = position.getX();
+		y = position.getY();
+
+		glColor3d(color[0].getR(), color[0].getG(), color[0].getB());
+		glTexCoord2d(x, y);
+		glVertex2d(x, y);
+
+		glColor3d(color[1].getR(), color[1].getG(), color[1].getB());
+		glTexCoord2d(x - length, y);
+		glVertex2d(x - length, y);
+
+		glColor3d(color[2].getR(), color[2].getG(), color[2].getB());
+		glTexCoord2d(x - length, y - length);
+		glVertex2d(x - length, y - length);
+
+		glColor3d(color[3].getR(), color[3].getG(), color[3].getB());
+		glTexCoord2d(x, y - length);
+		glVertex2d(x, y - length);
+	}
+
+	glEnd();
+}
+
+void draw(vector<Square> &squares)
+{
+	double length;
+	double x;
+	double y;
+	Coordinate position;
+	rgbColor *color;
+	size_t size = squares.size();
+
+	glEnable(GL_TEXTURE_2D);
+
+	glMatrixMode(GL_MODELVIEW);
+
+	glBegin(GL_QUADS);
+	glLoadIdentity();
+
+	for(size_t i = 0; i < size; ++i)
+	{
+		length = squares[i].getLength();
+		position = squares[i].getPosition();
+		color = squares[i].getColor();
+		x = position.getX();
+		y = position.getY();
+
+		//glColor3d(color[0].getR(), color[0].getG(), color[0].getB());
+		glTexCoord2d(x, y);
+		glVertex2d(x, y);
+
+		//glColor3d(color[1].getR(), color[1].getG(), color[1].getB());
+		glTexCoord2d(x - length, y);
+		glVertex2d(x - length, y);
+
+		//glColor3d(color[2].getR(), color[2].getG(), color[2].getB());
+		glTexCoord2d(x - length, y - length);
+		glVertex2d(x - length, y - length);
+
+		//glColor3d(color[3].getR(), color[3].getG(), color[3].getB());
+		glTexCoord2d(x, y - length);
+		glVertex2d(x, y - length);
+	}
+
+	glEnd();
+}
+
+void draw(Circle &circle)
+{
+	//glBegin(GL_LINE_LOOP);
+	glBegin(GL_TRIANGLE_FAN);
+
+	double pi = 3.141592654;
+	double radius = circle.getRadius();
+	double x = circle.getPosition().getX();
+	double y = circle.getPosition().getY();
+
+	// The reason why the following code is commented out is because I am not
+	// certain if rendering the circle with radians or degrees is faster.
+
+	/*double radian = 3.141592654 / 180;
+	double radius = circle.getRadius();
+
+	for(int i = 0; i < 360; ++i)
+	{
+		double position = i * radian;
+		glVertex2d(cos(position) * radius, sin(position) * radius);
+	}*/
+
+	for(double i = 0; i < 2 * pi; i += .125)
+	{
+		// Possibly we can include an x/y bias for non square windows
+		glVertex2d(cos(i) * radius + x, sin(i) * radius + y);
+	}
+
+	glEnd();
+}
+
+void draw(Circle *circle, int argc)
+{
+	glBegin(GL_TRIANGLE_FAN);
+
+	double pi = 3.141592654;
+
+	for(int j = 0; j < argc; ++j)
+	{
+		double radius = circle[j].getRadius();
+		double x = circle[j].getPosition().getX();
+		double y = circle[j].getPosition().getY();
+
+		for(double i = 0; i < 2 * pi; i += .125)
+		{
+			glVertex2d(cos(i) * radius + x, sin(i) * radius + y);
+		}
+	}
+
+	glEnd();
+}
+
+/*void draw()
+{
+
+}*/
