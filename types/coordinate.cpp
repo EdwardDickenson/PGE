@@ -38,6 +38,12 @@ void Coordinate::setXY(double newX, double newY)
 	setY(newY);
 }
 
+void Coordinate::setXY(double newCoord)
+{
+	setX(newCoord);
+	setY(newCoord);
+}
+
 double Coordinate::distance(Coordinate other)
 {
 	return sqrt(pow(x + other.x, 2) + pow(y + other.y, 2));

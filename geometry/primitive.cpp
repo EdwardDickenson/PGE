@@ -5,33 +5,27 @@ using namespace std;
 
 Primitive::Primitive()
 {
-	position.setX(1.0);
-	position.setY(1.0);
+	length = 0;
+	position.setXY(0, 0);
+
+	rgbColor tmp(1.0, 1.0, 1.0);
 }
 
-Primitive::Primitive(Coordinate &position)
+Primitive::Primitive(double defaultLength, Coordinate &defaultPosition)
 {
-
+	length = defaultLength;
+	position = defaultPosition;
 }
 
-Primitive::Primitive(rgbColor *colors)
+void Primitive::setPosition(Coordinate &newPosition)
 {
-
+	position = newPosition;
 }
 
-Primitive::Primitive(Coordinate &position, rgbColor *colors)
+
+void Primitive::setLength(double newLength)
 {
-
-}
-
-void Primitive::setPosition(Coordinate &position)
-{
-	position = position;
-}
-
-void Primitive::setColor(rgbColor *colors)
-{
-
+	length = newLength;
 }
 
 Coordinate Primitive::getPosition()
@@ -39,12 +33,14 @@ Coordinate Primitive::getPosition()
 	return position;
 }
 
-rgbColor *Primitive::getColor()
+double Primitive::getLength()
 {
-	return colors;
+	return length;
 }
 
 // TODO:
-//
+//	Implement color related functionality. Because different primitives will
+//	a have different of verticies we cannot set the "color" field to a
+//	constantly sized array. Only some of this functionality can be abstracted.
 //
 //

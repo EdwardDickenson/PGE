@@ -3,9 +3,7 @@
 Square::Square()
 {
 	length = 0;
-
-	position.setX(0);
-	position.setY(0);
+	position.setXY(0, 0);
 
 	rgbColor tmp(1.0, 1.0, 1.0);
 	color[0] = tmp;
@@ -37,61 +35,29 @@ Square::Square(double defaultLength, Coordinate defaultPosition, rgbColor defaul
 	color[3] = defaultColor;
 }
 
-double Square::getLength()
+Square::Square(double defaultLength, Coordinate defaultPosition, rgbColor defaultColors[])
 {
-	return length;
+	length = defaultLength;
+	position = defaultPosition;
+
+	color[0] = defaultColors[0];
+	color[1] = defaultColors[1];
+	color[2] = defaultColors[2];
+	color[3] = defaultColors[3];
 }
 
-/*Coordinate Square::getPosition()
+void Square::resize(double newLength)
 {
-	return position;
-}*/
+	setLength(newLength);
+	position.setXY(newLength / 2);
+}
 
 rgbColor *Square::getColor()
 {
 	return color;
 }
 
-void Square::setLength(double newLength)
-{
-	length = newLength;
-}
-
-//	Set the position of the upper right hand corner
-/*void Square::setPosition(Coordinate newPosition)
-{
-	position = newPosition;
-}*/
-
-/*inline double Square::volume()
+double Square::volume()
 {
 	return length * length;
-}*/
-
-void Square::draw()
-{
-	glEnable(GL_TEXTURE_2D);
-
-	glMatrixMode(GL_MODELVIEW);
-
-	glBegin(GL_QUADS);
-	glLoadIdentity();
-
-	glColor3d(color[0].getR(), color[0].getG(), color[0].getB());
-	glTexCoord2d(position.getX(), position.getY());
-	glVertex2d(position.getX(), position.getY());
-
-	glColor3d(color[1].getR(), color[1].getG(), color[1].getB());
-	glTexCoord2d(position.getX() - length, position.getY());
-	glVertex2d(position.getX() - length, position.getY());
-
-	glColor3d(color[2].getR(), color[2].getG(), color[2].getB());
-	glTexCoord2d(position.getX() - length, position.getY() - length);
-	glVertex2d(position.getX() - length, position.getY() - length);
-
-	glColor3d(color[3].getR(), color[3].getG(), color[3].getB());
-	glTexCoord2d(position.getX(), position.getY() - length);
-	glVertex2d(position.getX(), position.getY() - length);
-
-	glEnd();
 }

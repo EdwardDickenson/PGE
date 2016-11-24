@@ -101,19 +101,19 @@ void draw(vector<Square> &squares)
 		x = position.getX();
 		y = position.getY();
 
-		//glColor3d(color[0].getR(), color[0].getG(), color[0].getB());
+		glColor3d(color[0].getR(), color[0].getG(), color[0].getB());
 		glTexCoord2d(x, y);
 		glVertex2d(x, y);
 
-		//glColor3d(color[1].getR(), color[1].getG(), color[1].getB());
+		glColor3d(color[1].getR(), color[1].getG(), color[1].getB());
 		glTexCoord2d(x - length, y);
 		glVertex2d(x - length, y);
 
-		//glColor3d(color[2].getR(), color[2].getG(), color[2].getB());
+		glColor3d(color[2].getR(), color[2].getG(), color[2].getB());
 		glTexCoord2d(x - length, y - length);
 		glVertex2d(x - length, y - length);
 
-		//glColor3d(color[3].getR(), color[3].getG(), color[3].getB());
+		glColor3d(color[3].getR(), color[3].getG(), color[3].getB());
 		glTexCoord2d(x, y - length);
 		glVertex2d(x, y - length);
 	}

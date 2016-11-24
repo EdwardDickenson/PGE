@@ -8,10 +8,6 @@
 class rgbColor
 {
 private:
-
-	//double r;
-	//double g;
-	//double b;
 	unsigned int htmlColor;
 
 public:

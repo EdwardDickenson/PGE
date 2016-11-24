@@ -20,7 +20,9 @@ rgbColor::rgbColor(double defaultR, double defaultG, double defaultB)
 	htmlColor = htmlColor << 8;
 
 	htmlColor += blue;
-	//
+	// This is where the shift, by the same amount as the others, for the blue
+	// value would go. If we implement alpha vlaues then we will have to include
+	// that, but for now leaving it as it is, is also fine.
 }
 
 double rgbColor::getR()
@@ -30,12 +32,12 @@ double rgbColor::getR()
 
 double rgbColor::getG()
 {
-	return double(((htmlColor & 65280) >> 8) / 255); //
+	return double(((htmlColor & 65280) >> 8) / 255); // Divide by 255 might be possible with bitshifting
 }
 
 double rgbColor::getB()
 {
-	return double(((htmlColor & 255)) / 255); //
+	return double(((htmlColor & 255)) / 255); // Divide by 255 might be possible with bitshifting
 }
 
 void rgbColor::setR(double newR)
@@ -79,10 +81,7 @@ string rgbColor::html()
 
 
 // TODO:
-// Bit masking has sinificantly increased the complexity of this class. Although
-// there are, probably, performance improvements in doing so there are also some
-// set backs, such as the fact that we probably need to do unit testing on this
-// class.
+//
 //
 //
 //

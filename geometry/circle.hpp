@@ -5,7 +5,7 @@
 
 #include "primitive.hpp"
 
-class Circle
+class Circle : public Primitive
 {
 private:
 

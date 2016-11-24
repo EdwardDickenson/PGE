@@ -1,4 +1,3 @@
-#include "deps.hpp"
 #include "draw.hpp"
 #include "types/types.hpp"
 
@@ -81,7 +80,7 @@ void render_circle()
 						// window that is not square. Aspect ratio and scaling
 						// are in general issues that we have yet to address.
 
-		window = glfwCreateWindow(W, H, "Primatives - Render Circle", NULL, NULL);
+		window = glfwCreateWindow(W, H, "Primitives - Render Circle", NULL, NULL);
 
 		glfwSetKeyCallback(window, controls);
 		glfwMakeContextCurrent(window);
@@ -115,7 +114,7 @@ void render_square_image()
 	size_t W = 800;
 	size_t H = 800;
 
-	window = glfwCreateWindow(W, H, "Primatives - Square Image", NULL, NULL);
+	window = glfwCreateWindow(W, H, "primitives - Square Image", NULL, NULL);
 
 	glfwSetKeyCallback(window, bouncing_controls);
 	glfwMakeContextCurrent(window);
@@ -157,7 +156,7 @@ void render_bouncing_square()
 	size_t W = 800;
 	size_t H = 800;
 
-	window = glfwCreateWindow(W, H, "Primatives - Bouncing Square", NULL, NULL);
+	window = glfwCreateWindow(W, H, "Primitives - Bouncing Square", NULL, NULL);
 
 	glfwSetKeyCallback(window, bouncing_controls);
 	glfwMakeContextCurrent(window);
@@ -231,7 +230,7 @@ void render_growing_square()
 	size_t W = 800;
 	size_t H = 800;
 
-	window = glfwCreateWindow(W, H, "Primatives - Growing Square", NULL, NULL);
+	window = glfwCreateWindow(W, H, "Primitives - Growing Square", NULL, NULL);
 
 	glfwSetKeyCallback(window, controls);
 	glfwMakeContextCurrent(window);
@@ -249,10 +248,12 @@ void render_growing_square()
 		//block.draw();
 		draw(block);
 
-		origin.setX(length / 2);
-		origin.setY(length / 2);
-		block.setPosition(origin);
-		block.setLength(length);
+		//origin.setX(length / 2);
+		//origin.setY(length / 2);
+		//block.setPosition(origin);
+		//block.setLength(length);
+
+		block.resize(length);
 
 		if(grow)
 		{
@@ -290,7 +291,7 @@ void render_chess_board()
 	size_t W = 800;
 	size_t H = 800;
 
-	window = glfwCreateWindow(W, H, "Primatives - Chess Board", NULL, NULL);
+	window = glfwCreateWindow(W, H, "Primitives - Chess Board", NULL, NULL);
 
 	glfwSetKeyCallback(window, controls);
 	glfwMakeContextCurrent(window);
@@ -304,7 +305,7 @@ void render_chess_board()
 	double initialY = 1;
 	bool render = true;
 
-	//rgbColor colors[4] = {rgbColor(1, 0, 0), rgbColor(.25, 0, 0), rgbColor(.5, 0, 0), rgbColor(0, 0, 0)};
+	rgbColor colors[4] = {rgbColor(1.0, 0.0, 0.0), rgbColor(.5, 0.0, 0.0), rgbColor(.25, 0.0, 0.0), rgbColor(1.0, 0.0, 0.0)};
 
 	for(int i = 0; i < n; ++i)
 	{
@@ -315,8 +316,8 @@ void render_chess_board()
 
 		for(int j = 0; j < n; ++j)
 		{
-			//Square square(length_of_square, initialX, initialY, colors, 4);
-			Square square(length_of_square, Coordinate(initialX, initialY), rgbColor(1.0, 0.0, 0.0));
+			Square square(length_of_square, Coordinate(initialX, initialY), colors);
+			//Square square(length_of_square, Coordinate(initialX, initialY), rgbColor(1.0, 0.0, 0.0));
 			squares.push_back(square);
 
 			initialX -= .2;
@@ -345,8 +346,7 @@ void render_chess_board()
 	glfwTerminate();
 }
 
-//	A map would be easier to work with, but considering I cannot allocate runtime
-//	functions so dynamically allocating function pointers doesn't make much sense
+
 
 void(*functions[numberOfFunctions])() = {
 											&render_chess_board,
@@ -358,8 +358,6 @@ void(*functions[numberOfFunctions])() = {
 
 
 //	TODO:
-//	Use the name of the function being called as the name of the window being
-//	created.  Also make the names match up correctly using a single string
-//	instead of a literal.
+//
 //
 //

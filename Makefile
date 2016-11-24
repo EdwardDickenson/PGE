@@ -27,10 +27,10 @@ displacement.o:	types/displacement.*
 	$(cc) types/displacement.cpp -c -Wall
 
 square.o: geometry/square.* coordinate.o rgbcolor.o primitive.o
-	$(cc) geometry/square.cpp -c -Wall primitive.o
+	$(cc) geometry/square.cpp -c -Wall
 
 circle.o: geometry/circle.* coordinate.o rgbcolor.o primitive.o
-	$(cc) geometry/circle.cpp -c -Wall primitive.o
+	$(cc) geometry/circle.cpp -c -Wall
 
 primitive.o: geometry/primitive.* coordinate.o rgbcolor.o
 	$(cc) geometry/primitive.cpp -c -Wall
