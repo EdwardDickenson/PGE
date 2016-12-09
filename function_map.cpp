@@ -278,7 +278,7 @@ void render_growing_square()
 	glfwTerminate();
 }
 
-void render_chess_board()
+/*void render_chess_board()
 {
 	if(!glfwInit())
 	{
@@ -337,6 +337,67 @@ void render_chess_board()
 			//squares[i].draw();
 			draw(squares);
 		//}
+
+		glfwSwapBuffers(window);
+		glfwPollEvents();
+	}
+
+	glfwDestroyWindow(window);
+	glfwTerminate();
+}*/
+
+void render_chess_board()
+{
+	if(!glfwInit())
+	{
+		cout << "Error initializing GLFW" << endl;
+
+		return;
+	}
+
+	GLFWwindow *window;
+	size_t W = 800;
+	size_t H = 800;
+
+	window = glfwCreateWindow(W, H, "Primitives - Chess Board", NULL, NULL);
+
+	glfwSetKeyCallback(window, controls);
+	glfwMakeContextCurrent(window);
+
+	double length_of_square = .01;
+
+	vector<Square> squares;
+	double xPos = -1;
+	double yPos = 1;
+	bool offset = false;
+
+	//rgbColor colors[4] = {rgbColor(1.0, 0.0, 0.0), rgbColor(.5, 0.0, 0.0), rgbColor(.25, 0.0, 0.0), rgbColor(1.0, 0.0, 0.0)};
+	rgbColor colors[4] = {rgbColor(1.0, 0.0, 0.0), rgbColor(1.0, 0.0, 0.0), rgbColor(1.0, 0.0, 0.0), rgbColor(1.0, 0.0, 0.0)};
+
+	while(yPos >= -1)
+	{
+		xPos = -1;
+
+		if(offset)
+		{
+			xPos += length_of_square;
+		}
+
+		while(xPos <= 1)
+		{
+			squares.push_back(Square(length_of_square, Coordinate(xPos, yPos), colors));
+			xPos += (length_of_square * 2);
+		}
+
+		offset = !offset;
+		yPos -= length_of_square;
+	}
+
+	while(!glfwWindowShouldClose(window))
+	{
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		draw(squares);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
