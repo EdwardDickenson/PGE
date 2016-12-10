@@ -130,9 +130,6 @@ void render_square_image()
 	{
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		//glBindTexture(GL_TEXTURE_2D, texture[0]);
-		//block.setPosition(Coordinate(block.getPosition().getX(), block.getPosition().getY() - .01));
-		//block.draw();
 		draw(block);
 
 		glfwSwapBuffers(window);
@@ -173,7 +170,7 @@ void render_bouncing_square()
 
 	while(!glfwWindowShouldClose(window))
 	{
-		glClear(GL_COLOR_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT); // Maybe this should be in corporated into the draw function
 		draw(block);
 		origin.setX(origin.getX() + xDisp);
 		origin.setY(origin.getY() - yDisp);
@@ -244,14 +241,7 @@ void render_growing_square()
 	while(!glfwWindowShouldClose(window))
 	{
 		glClear(GL_COLOR_BUFFER_BIT);
-
-		//block.draw();
 		draw(block);
-
-		//origin.setX(length / 2);
-		//origin.setY(length / 2);
-		//block.setPosition(origin);
-		//block.setLength(length);
 
 		block.resize(length);
 
@@ -278,74 +268,6 @@ void render_growing_square()
 	glfwTerminate();
 }
 
-/*void render_chess_board()
-{
-	if(!glfwInit())
-	{
-		cout << "Error initializing GLFW" << endl;
-
-		return;
-	}
-
-	GLFWwindow *window;
-	size_t W = 800;
-	size_t H = 800;
-
-	window = glfwCreateWindow(W, H, "Primitives - Chess Board", NULL, NULL);
-
-	glfwSetKeyCallback(window, controls);
-	glfwMakeContextCurrent(window);
-
-	double length_of_square = .1;
-	double n = (1 / length_of_square) * 2;
-
-	vector<Square> squares;
-
-	double initialX = 1;
-	double initialY = 1;
-	bool render = true;
-
-	rgbColor colors[4] = {rgbColor(1.0, 0.0, 0.0), rgbColor(.5, 0.0, 0.0), rgbColor(.25, 0.0, 0.0), rgbColor(1.0, 0.0, 0.0)};
-
-	for(int i = 0; i < n; ++i)
-	{
-		if(render)
-		{
-			initialX -= .1;
-		}
-
-		for(int j = 0; j < n; ++j)
-		{
-			Square square(length_of_square, Coordinate(initialX, initialY), colors);
-			//Square square(length_of_square, Coordinate(initialX, initialY), rgbColor(1.0, 0.0, 0.0));
-			squares.push_back(square);
-
-			initialX -= .2;
-		}
-
-		initialX = 1;
-		initialY -= .1;
-		render = !render;
-	}
-
-	while(!glfwWindowShouldClose(window))
-	{
-		glClear(GL_COLOR_BUFFER_BIT);
-
-		//for(int i = 0; i < n*n; ++i)
-		//{
-			//squares[i].draw();
-			draw(squares);
-		//}
-
-		glfwSwapBuffers(window);
-		glfwPollEvents();
-	}
-
-	glfwDestroyWindow(window);
-	glfwTerminate();
-}*/
-
 void render_chess_board()
 {
 	if(!glfwInit())
@@ -364,15 +286,15 @@ void render_chess_board()
 	glfwSetKeyCallback(window, controls);
 	glfwMakeContextCurrent(window);
 
-	double length_of_square = .01;
+	double length_of_square = .001;
 
 	vector<Square> squares;
 	double xPos = -1;
 	double yPos = 1;
 	bool offset = false;
 
-	//rgbColor colors[4] = {rgbColor(1.0, 0.0, 0.0), rgbColor(.5, 0.0, 0.0), rgbColor(.25, 0.0, 0.0), rgbColor(1.0, 0.0, 0.0)};
 	rgbColor colors[4] = {rgbColor(1.0, 0.0, 0.0), rgbColor(1.0, 0.0, 0.0), rgbColor(1.0, 0.0, 0.0), rgbColor(1.0, 0.0, 0.0)};
+	int n = 0;
 
 	while(yPos >= -1)
 	{
@@ -387,11 +309,14 @@ void render_chess_board()
 		{
 			squares.push_back(Square(length_of_square, Coordinate(xPos, yPos), colors));
 			xPos += (length_of_square * 2);
+			++n;
 		}
 
 		offset = !offset;
 		yPos -= length_of_square;
 	}
+
+	cout << "Created a total of: " << n << " Squares" << endl;
 
 	while(!glfwWindowShouldClose(window))
 	{
@@ -406,8 +331,6 @@ void render_chess_board()
 	glfwDestroyWindow(window);
 	glfwTerminate();
 }
-
-
 
 void(*functions[numberOfFunctions])() = {
 											&render_chess_board,

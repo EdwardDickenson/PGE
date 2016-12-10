@@ -82,6 +82,12 @@ void draw(vector<Square> &squares)
 	double length;
 	double x;
 	double y;
+	int html;
+	double red;
+	double blue;
+	double green;
+	double xd; // X delta
+	double yd; // Y delta
 	Coordinate position;
 	rgbColor *color;
 	size_t size = squares.size();
@@ -95,27 +101,52 @@ void draw(vector<Square> &squares)
 
 	for(size_t i = 0; i < size; ++i)
 	{
-		length = squares[i].getLength();
-		position = squares[i].getPosition();
-		color = squares[i].getColor();
-		x = position.getX();
+		Square tmp = squares[i];  // Not sure if this actually helps or not, but it reduces the number of accesses needed to the vector
+
+		length = tmp.getLength();
+		position = tmp.getPosition();
+		color = tmp.getColor();
+		x = position.getX();  // Would these two be a good case for pass by pointer?
 		y = position.getY();
 
-		glColor3d(color[0].getR(), color[0].getG(), color[0].getB());
+		xd = x - length;
+		yd = y - length;
+
+		html = color[0].getHTML();
+		red = double(((html & 16711680) >> 16) / 255);
+		blue = double(((html & 65280) >> 8) / 255);
+		green = double(((html & 255)) / 255);
+
+		glColor3d(red, green, blue);
 		glTexCoord2d(x, y);
 		glVertex2d(x, y);
 
-		glColor3d(color[1].getR(), color[1].getG(), color[1].getB());
-		glTexCoord2d(x - length, y);
-		glVertex2d(x - length, y);
+		html = color[1].getHTML();
+		red = double(((html & 16711680) >> 16) / 255);
+		blue = double(((html & 65280) >> 8) / 255);
+		green = double(((html & 255)) / 255);
 
-		glColor3d(color[2].getR(), color[2].getG(), color[2].getB());
-		glTexCoord2d(x - length, y - length);
-		glVertex2d(x - length, y - length);
+		glColor3d(red, green, blue);
+		glTexCoord2d(xd, y);
+		glVertex2d(xd, y);
 
-		glColor3d(color[3].getR(), color[3].getG(), color[3].getB());
-		glTexCoord2d(x, y - length);
-		glVertex2d(x, y - length);
+		html = color[2].getHTML();
+		red = double(((html & 16711680) >> 16) / 255);
+		blue = double(((html & 65280) >> 8) / 255);
+		green = double(((html & 255)) / 255);
+
+		glColor3d(red, green, blue);
+		glTexCoord2d(xd, yd);
+		glVertex2d(xd, yd);
+
+		html = color[3].getHTML();
+		red = double(((html & 16711680) >> 16) / 255);
+		blue = double(((html & 65280) >> 8) / 255);
+		green = double(((html & 255)) / 255);
+
+		glColor3d(red, green, blue);
+		glTexCoord2d(x, yd);
+		glVertex2d(x, yd);
 	}
 
 	glEnd();
@@ -132,7 +163,11 @@ void draw(Circle &circle)
 	double y = circle.getPosition().getY();
 
 	// The reason why the following code is commented out is because I am not
-	// certain if rendering the circle with radians or degrees is faster.
+	// certain if rendering the circle with radians or degrees is faster, and I
+	// need to include some bechmarking facilities.
+
+	// Additionally, I should be able to create circle by only using one
+	// quadrant and then rotate that accross axies.
 
 	/*double radian = 3.141592654 / 180;
 	double radius = circle.getRadius();
