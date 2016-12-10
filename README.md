@@ -5,5 +5,5 @@ there is only support for Linux and there are no plans to change this in the imm
 any purpose does so at their own risk.
 
 Presently capable of processing:
-* Squres
+* Squares
 * Circles
