@@ -39,8 +39,6 @@ double Primitive::getLength()
 }
 
 // TODO:
-//	Implement color related functionality. Because different primitives will
-//	a have different of verticies we cannot set the "color" field to a
-//	constantly sized array. Only some of this functionality can be abstracted.
+//
 //
 //

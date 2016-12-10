@@ -5,7 +5,7 @@ Square::Square()
 	length = 0;
 	position.setXY(0, 0);
 
-	rgbColor tmp(1.0, 1.0, 1.0);
+	rgbColor tmp(0.0, 0.0, 0.0);
 	color[0] = tmp;
 	color[1] = tmp;
 	color[2] = tmp;
@@ -17,7 +17,7 @@ Square::Square(double defaultLength, Coordinate defaultPosition)
 	length = defaultLength;
 	position = defaultPosition;
 
-	rgbColor tmp(1.0, 1.0, 1.0);
+	rgbColor tmp(0.0, 0.0, 0.0);
 	color[0] = tmp;
 	color[1] = tmp;
 	color[2] = tmp;

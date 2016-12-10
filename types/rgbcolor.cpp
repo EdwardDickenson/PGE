@@ -22,7 +22,12 @@ rgbColor::rgbColor(double defaultR, double defaultG, double defaultB)
 	htmlColor += blue;
 	// This is where the shift, by the same amount as the others, for the blue
 	// value would go. If we implement alpha vlaues then we will have to include
-	// that, but for now leaving it as it is, is also fine.
+	// that, but for now leaving it as it is is also fine.
+}
+
+int rgbColor::getHTML()
+{
+	return htmlColor;
 }
 
 double rgbColor::getR()
