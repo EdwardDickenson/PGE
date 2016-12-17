@@ -5,7 +5,7 @@ Square::Square()
 	length = 0;
 	position.setXY(0, 0);
 
-	rgbColor tmp(1.0, 1.0, 1.0);
+	rgbColor tmp(255, 255, 255);
 	color[0] = tmp;
 	color[1] = tmp;
 	color[2] = tmp;

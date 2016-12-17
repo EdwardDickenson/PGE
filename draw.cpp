@@ -83,9 +83,6 @@ void draw(vector<Square> &squares)
 	double x;
 	double y;
 	int html;
-	double red;
-	double blue;
-	double green;
 	double xd; // X delta
 	double yd; // Y delta
 	Coordinate position;

@@ -25,6 +25,15 @@ rgbColor::rgbColor(double defaultR, double defaultG, double defaultB)
 	// that, but for now leaving it as it is is also fine.
 }
 
+rgbColor::rgbColor(int htmlr, int htmlg, int htmlb)
+{
+	htmlColor = htmlr;
+	htmlColor = htmlColor << 8;
+	htmlColor += htmlg;
+	htmlColor = htmlColor << 8;
+	htmlColor += htmlb;
+}
+
 int rgbColor::getHTML()
 {
 	return htmlColor;

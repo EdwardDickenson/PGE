@@ -13,9 +13,9 @@ private:
 public:
 
 	rgbColor();
-	rgbColor(int defaultHTMLColor);
-	rgbColor(int htmlR, int htmlG, int htmlB);
 	rgbColor(double defaulR, double defaultG, double defaultB);
+	rgbColor(int htmlR, int htmlG, int htmlB);
+	rgbColor(int defaultHTMLColor);
 
 	int getHTML();
 	int getHTMLR();
@@ -28,10 +28,12 @@ public:
 	void setR(double newR);
 	void setG(double newG);
 	void setB(double newB);
-	void setHTML(int newHTMLColor);
+	void setColor(double newR, double newG, double newB);
 	void setHTMLR(int newHTMLR);
 	void setHTMLG(int newHTMLG);
 	void setHTMLB(int newHTMLB);
+	void setColor(int newHTMLR, int newHTMLG, int newHTMLB);
+	void setHTML(int newHTMLColor);
 
 	string html();
 };
