@@ -113,38 +113,26 @@ void draw(vector<Square> &squares)
 		yd = y - length;
 
 		html = color[0].getHTML();
-		red = double(((html & 16711680) >> 16) / 255);
-		blue = double(((html & 65280) >> 8) / 255);
-		green = double(((html & 255)) / 255);
 
-		glColor3d(red, green, blue);
+		glColor3d(double(((html & 16711680) >> 16) / 255), double(((html & 65280) >> 8) / 255), double(((html & 255)) / 255));
 		glTexCoord2d(x, y);
 		glVertex2d(x, y);
 
 		html = color[1].getHTML();
-		red = double(((html & 16711680) >> 16) / 255);
-		blue = double(((html & 65280) >> 8) / 255);
-		green = double(((html & 255)) / 255);
 
-		glColor3d(red, green, blue);
+		glColor3d(double(((html & 16711680) >> 16) / 255), double(((html & 65280) >> 8) / 255), double(((html & 255)) / 255));
 		glTexCoord2d(xd, y);
 		glVertex2d(xd, y);
 
 		html = color[2].getHTML();
-		red = double(((html & 16711680) >> 16) / 255);
-		blue = double(((html & 65280) >> 8) / 255);
-		green = double(((html & 255)) / 255);
 
-		glColor3d(red, green, blue);
+		glColor3d(double(((html & 16711680) >> 16) / 255), double(((html & 65280) >> 8) / 255), double(((html & 255)) / 255));
 		glTexCoord2d(xd, yd);
 		glVertex2d(xd, yd);
 
 		html = color[3].getHTML();
-		red = double(((html & 16711680) >> 16) / 255);
-		blue = double(((html & 65280) >> 8) / 255);
-		green = double(((html & 255)) / 255);
 
-		glColor3d(red, green, blue);
+		glColor3d(double(((html & 16711680) >> 16) / 255), double(((html & 65280) >> 8) / 255), double(((html & 255)) / 255));
 		glTexCoord2d(x, yd);
 		glVertex2d(x, yd);
 	}

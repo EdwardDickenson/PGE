@@ -41,7 +41,7 @@ void cli()
 		cout << "Input the name of a funciton(\"quit\" to end program or \"print_descriptions\" to see the function map): ";
 		cin >> input;
 
-		if(input == "quit")
+		if(input == "quit" || input == "exit")
 		{
 			running = false;
 		}
