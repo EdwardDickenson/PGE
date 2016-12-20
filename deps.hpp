@@ -1,28 +1,29 @@
 #ifndef DEPS_HPP
 #define DEPS_HPP
 
-#include <string>
+// C++ includes
 #include <iostream>
-#include <sstream>
-#include <GLFW/glfw3.h>
-#include <unistd.h>
 #include <string>
+#include <sstream>
 #include <list>
 #include <vector>
-#include <SOIL/SOIL.h>
+#include <fstream>
+
+// C includes
 #include <math.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+// OpenGL includes
+#include <GLFW/glfw3.h>
+#include <SOIL/SOIL.h>
 
 using namespace std;
 
-/*class Square;
-class Circle;*/
-
 static const size_t numberOfFunctions = 5;
 extern void(*functions[numberOfFunctions])();
-
-/*void draw(Square &square);
-void draw(Square *squares, size_t argc);
-void draw(vector<Square> &squares);*/
 
 #endif	//	DEPS_HPP
 

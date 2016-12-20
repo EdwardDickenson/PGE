@@ -35,6 +35,8 @@ circle.o: geometry/circle.* coordinate.o rgbcolor.o primitive.o
 primitive.o: geometry/primitive.* coordinate.o rgbcolor.o
 	$(cc) geometry/primitive.cpp -c -Wall
 
+
+
 clean:
 	rm *.o
 	rm main

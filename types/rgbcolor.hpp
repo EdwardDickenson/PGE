@@ -17,21 +17,21 @@ public:
 	rgbColor(int red, int green, int blue);
 	rgbColor(unsigned int html);
 
-	double getR();
-	double getG();
-	double getB();
+	double getRed();
+	double getGreen();
+	double getBlue();
 	int getHTML();
-	int getHTMLR();
-	int getHTMLG();
-	int getHTMLB();
+	int getHTMLRed();
+	int getHTMLGreen();
+	int getHTMLBlue();
 
-	void setR(double red);
-	void setG(double green);
-	void setB(double blue);
+	void setRed(double red);
+	void setGreen(double green);
+	void setBlue(double blue);
 	void setColor(double red, double green, double blue);
-	void setHTMLR(int red);
-	void setHTMLG(int green);
-	void setHTMLB(int blue);
+	void setHTMLRed(int red);
+	void setHTMLGreen(int green);
+	void setHTMLBlue(int blue);
 	void setColor(int red, int green, int blue);
 	void setHTML(unsigned int html);
 
