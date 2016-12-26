@@ -5,12 +5,13 @@
 // The value, 0000 0000 1111 1111 0000 0000 0000 0000, is 16,711,680 in decimal
 
 // The value, 65,535, is 0000 0000 1111 1111 1111 1111 in binary
-// The value, 16,711,935, is 1111 1111 0000 0000 1111 1111 in binary
-// The value, 16,776,960, is 1111 1111 1111 1111 0000 0000 in binary
+// The value, 16,711,935, is 0000 0000 1111 1111 0000 0000 1111 1111 in binary
+// The value, 16,776,960, is 0000 0000 1111 1111 1111 1111 0000 0000 in binary
+// The value, 16,777,215, is 0000 0000 1111 1111 1111 1111 1111 1111 in binary
 
 rgbColor::rgbColor()
 {
-	htmlColor = 0;
+	htmlColor = 16777215;
 }
 
 rgbColor::rgbColor(double red, double green, double blue)
@@ -47,32 +48,32 @@ rgbColor::rgbColor(unsigned int html)
 	htmlColor = html;
 }
 
-double rgbColor::getR()
+double rgbColor::getRed()
 {
 	return double(((htmlColor & 16711680) >> 16) / 255); // Divide by 255 might be possible with bitshifting
 }
 
-double rgbColor::getG()
+double rgbColor::getGreen()
 {
 	return double(((htmlColor & 65280) >> 8) / 255); // Divide by 255 might be possible with bitshifting
 }
 
-double rgbColor::getB()
+double rgbColor::getBlue()
 {
 	return double(((htmlColor & 255)) / 255); // Divide by 255 might be possible with bitshifting
 }
 
-int rgbColor::getHTMLR()
+int rgbColor::getHTMLRed()
 {
 	return ((htmlColor >> 16) & 255); // Write a unit test to see if the int will wrap around
 }
 
-int rgbColor::getHTMLG()
+int rgbColor::getHTMLGreen()
 {
 	return ((htmlColor >> 8) & 255); // Write a unit test to see if the int will wrap around
 }
 
-int rgbColor::getHTMLB()
+int rgbColor::getHTMLBlue()
 {
 	return (htmlColor & 255); // Write a unit test to see if the int will wrap around
 }
@@ -82,21 +83,21 @@ int rgbColor::getHTML()
 	return htmlColor;
 }
 
-void rgbColor::setR(double red)
+void rgbColor::setRed(double red)
 {
 	int htmlRed = int(red * 255);
 	htmlRed = htmlRed << 16;
 	htmlColor = htmlColor & (65535 | htmlRed);
 }
 
-void rgbColor::setG(double green)
+void rgbColor::setGreen(double green)
 {
 	int htmlGreen = int(green * 255);
 	htmlGreen = htmlGreen << 8;
 	htmlColor = htmlColor & (16711935 | htmlGreen);
 }
 
-void rgbColor::setB(double blue)
+void rgbColor::setBlue(double blue)
 {
 	int htmlBlue = int(blue * 255);
 	htmlColor = htmlColor & (16776960 | htmlBlue);
@@ -116,21 +117,21 @@ void rgbColor::setColor(double red, double green, double blue) // This implement
 	htmlColor = htmlColor & (16776960 | htmlBlue);
 }
 
-void rgbColor::setHTMLR(int red)
+void rgbColor::setHTMLRed(int red)
 {
 	red = red << 16;
 	htmlColor = htmlColor & 65535;
 	htmlColor = htmlColor | red;
 }
 
-void rgbColor::setHTMLG(int green)
+void rgbColor::setHTMLGreen(int green)
 {
 	green = green << 8;
 	htmlColor = htmlColor & 16711935;
 	htmlColor = htmlColor | green;
 }
 
-void rgbColor::setHTMLB(int blue)
+void rgbColor::setHTMLBlue(int blue)
 {
 	htmlColor = htmlColor & 16776960;
 	htmlColor = htmlColor | blue;
@@ -176,7 +177,7 @@ string rgbColor::html()
 
 
 // TODO:
-//
+//	Change the name of the functions from get<color> to simply <color>
 //
 //
 //

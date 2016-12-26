@@ -15,19 +15,19 @@ void draw(Square &square)
 	double x = position.getX();
 	double y = position.getY();
 
-	glColor3d(color[0].getR(), color[0].getG(), color[0].getB());
+	glColor3d(color[0].getRed(), color[0].getGreen(), color[0].getBlue());
 	glTexCoord2d(x, y);
 	glVertex2d(x, y);
 
-	glColor3d(color[1].getR(), color[1].getG(), color[1].getB());
+	glColor3d(color[1].getRed(), color[1].getGreen(), color[1].getBlue());
 	glTexCoord2d(x - length, y);
 	glVertex2d(x - length, y);
 
-	glColor3d(color[2].getR(), color[2].getG(), color[2].getB());
+	glColor3d(color[2].getRed(), color[2].getGreen(), color[2].getBlue());
 	glTexCoord2d(x - length, y - length);
 	glVertex2d(x - length, y - length);
 
-	glColor3d(color[3].getR(), color[3].getG(), color[3].getB());
+	glColor3d(color[3].getRed(), color[3].getGreen(), color[3].getBlue());
 	glTexCoord2d(x, y - length);
 	glVertex2d(x, y - length);
 
@@ -57,19 +57,19 @@ void draw(Square *squares, size_t argc)
 		x = position.getX();
 		y = position.getY();
 
-		glColor3d(color[0].getR(), color[0].getG(), color[0].getB());
+		glColor3d(color[0].getRed(), color[0].getGreen(), color[0].getBlue());
 		glTexCoord2d(x, y);
 		glVertex2d(x, y);
 
-		glColor3d(color[1].getR(), color[1].getG(), color[1].getB());
+		glColor3d(color[1].getRed(), color[1].getGreen(), color[1].getBlue());
 		glTexCoord2d(x - length, y);
 		glVertex2d(x - length, y);
 
-		glColor3d(color[2].getR(), color[2].getG(), color[2].getB());
+		glColor3d(color[2].getRed(), color[2].getGreen(), color[2].getBlue());
 		glTexCoord2d(x - length, y - length);
 		glVertex2d(x - length, y - length);
 
-		glColor3d(color[3].getR(), color[3].getG(), color[3].getB());
+		glColor3d(color[3].getRed(), color[3].getGreen(), color[3].getBlue());
 		glTexCoord2d(x, y - length);
 		glVertex2d(x, y - length);
 	}

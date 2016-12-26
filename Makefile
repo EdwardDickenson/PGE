@@ -3,10 +3,13 @@ deps = -lGL -lglfw -lSOIL
 flags = -c -Wall
 prof = -pg
 
-all: primitives
+all: primitives unit
 
 primitives: main.o function_map.o
-	$(cc) *.o -o main $(deps)
+	$(cc) -o main main.o function_map.o coordinate.o rgbcolor.o square.o circle.o draw.o primitive.o $(deps)
+
+unit: unit.o
+	$(cc) -o unit/unit unit.o coordinate.o rgbcolor.o square.o circle.o primitive.o $(deps)
 
 main.o: main.cpp
 	$(cc) main.cpp -c -Wall
@@ -27,7 +30,7 @@ displacement.o:	types/displacement.*
 	$(cc) types/displacement.cpp -c -Wall
 
 square.o: geometry/square.* coordinate.o rgbcolor.o primitive.o
-	$(cc) geometry/square.cpp -c -Wall
+	$(cc) geometry/square.cpp primitive.o -c -Wall
 
 circle.o: geometry/circle.* coordinate.o rgbcolor.o primitive.o
 	$(cc) geometry/circle.cpp -c -Wall
@@ -35,8 +38,12 @@ circle.o: geometry/circle.* coordinate.o rgbcolor.o primitive.o
 primitive.o: geometry/primitive.* coordinate.o rgbcolor.o
 	$(cc) geometry/primitive.cpp -c -Wall
 
-
+unit.o: unit/unit.cpp unit/unit.hpp unit/testrgb.hpp
+	$(cc) unit/unit.cpp -c -Wall
 
 clean:
-	rm *.o
-	rm main
+	rm -rf *.o
+	rm -rf main
+	rm -rf unit/*.o
+	rm -rf unit/results.csv
+	rm -rf unit/unit

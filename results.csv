@@ -1,0 +1,14 @@
+0.002314,0,white.getHTMLRe#Number of unit tests: 14
+getHTMLGreen() != 0
+0.002345,2,white.getHTMLBlue() != 0
+0.002349,3,blackHTML.getRed() != 1.0
+0.002352,4,blackHTML.getGreen() != 1.0
+0.002356,5,blackHTML.getBlue() != 1.0
+0.002359,6,maxHTMLRed.getHTMLGreen()
+0.002362,7,maxHTMLRed.getHTMLBlue()
+0.002365,8,color.getRed() != 1.0
+0.002368,9,color.getGreen() != 1.0
+0.002372,10,color.getBlue() != 1.0
+0.002375,11,color.getHTMLRed() != 255)
+0.002378,12,color.getHTMLGreen() != 255
+0.002381,13,color.getHTMLBlue() != 255
