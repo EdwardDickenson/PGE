@@ -17,13 +17,13 @@ public:
 	rgbColor(int red, int green, int blue);
 	rgbColor(unsigned int html);
 
-	double getRed();
-	double getGreen();
-	double getBlue();
-	int getHTML();
-	int getHTMLRed();
-	int getHTMLGreen();
-	int getHTMLBlue();
+	double red();
+	double green();
+	double blue();
+	int HTML();
+	int HTMLRed();
+	int HTMLGreen();
+	int HTMLBlue();
 
 	void setRed(double red);
 	void setGreen(double green);

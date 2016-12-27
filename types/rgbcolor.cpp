@@ -48,37 +48,37 @@ rgbColor::rgbColor(unsigned int html)
 	htmlColor = html;
 }
 
-double rgbColor::getRed()
+double rgbColor::red()
 {
 	return double(((htmlColor & 16711680) >> 16) / 255); // Divide by 255 might be possible with bitshifting
 }
 
-double rgbColor::getGreen()
+double rgbColor::green()
 {
 	return double(((htmlColor & 65280) >> 8) / 255); // Divide by 255 might be possible with bitshifting
 }
 
-double rgbColor::getBlue()
+double rgbColor::blue()
 {
 	return double(((htmlColor & 255)) / 255); // Divide by 255 might be possible with bitshifting
 }
 
-int rgbColor::getHTMLRed()
+int rgbColor::HTMLRed()
 {
 	return ((htmlColor >> 16) & 255); // Write a unit test to see if the int will wrap around
 }
 
-int rgbColor::getHTMLGreen()
+int rgbColor::HTMLGreen()
 {
 	return ((htmlColor >> 8) & 255); // Write a unit test to see if the int will wrap around
 }
 
-int rgbColor::getHTMLBlue()
+int rgbColor::HTMLBlue()
 {
 	return (htmlColor & 255); // Write a unit test to see if the int will wrap around
 }
 
-int rgbColor::getHTML()
+int rgbColor::HTML()
 {
 	return htmlColor;
 }

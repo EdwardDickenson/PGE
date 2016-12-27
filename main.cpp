@@ -1,9 +1,6 @@
 #include "deps.hpp"
-#include <GLFW/glfw3.h>
-
 #include "geometry/geometry.hpp"
 #include "types/types.hpp"
-#include "deps.hpp"
 
 using namespace std;
 
