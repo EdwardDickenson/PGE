@@ -49,7 +49,7 @@ Square::Square(double defaultLength, Coordinate defaultPosition, rgbColor defaul
 void Square::resize(double newLength)
 {
 	setLength(newLength);
-	position.setXY(newLength / 2);
+	position.set(newLength / 2);
 }
 
 rgbColor *Square::getColor()
@@ -57,7 +57,53 @@ rgbColor *Square::getColor()
 	return color;
 }
 
+Coordinate Square::getURight()
+{
+	return position;
+}
+
+Coordinate Square::getLRight()
+{
+	Coordinate result(position.getX(), position.getY() - length);
+	return result;
+}
+
+Coordinate Square::getLLeft()
+{
+	Coordinate result(position.getX() - length, position.getY() - length);
+	return result;
+}
+
+Coordinate Square::getULeft()
+{
+	Coordinate result(position.getX() - length, position.getY());
+	return result;
+}
+
 double Square::volume()
 {
 	return length * length;
 }
+
+bool Square::inRegion(Coordinate point)
+{
+	double w = point.getX();
+	double x = point.getY();
+	double y = position.getX();
+	double z = position.getY();
+
+	if(	w <= y && w >= (w - length) && // Check if the point's x value is inside of the square
+		x <= z && x >= (z - length))
+	{
+		return true;
+	}
+
+	return false;
+}
+
+
+
+//	TODO:
+//
+//
+//

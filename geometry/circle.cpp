@@ -73,3 +73,24 @@ double Circle::volume()
 {
 	return (3.141592654) * (radius * radius);
 }
+
+bool Circle::inRegion(Coordinate point)
+{
+	double w = point.getX();
+	double x = point.getY();
+	double y = position.getX();
+	double z = position.getY();
+
+	if(	w <= y && w >= (w - length) &&
+		x <= z && x >= (z - length))
+	{
+		return true;
+	}
+
+	return false;
+}
+
+//	TODO:
+//
+//
+//

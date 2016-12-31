@@ -20,7 +20,8 @@ public:
 	void setX(double newX);
 	void setY(double newY);
 	void setXY(double newX, double newY);
-	void setXY(double newCoord);
+	void setYX(double newX, double newY);
+	void set(double newCoord); // Sets both x and y equal to newCoord
 
 	double distance(Coordinate other);
 	double slope(Coordinate other);

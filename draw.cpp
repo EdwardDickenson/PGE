@@ -79,7 +79,6 @@ void draw(Square *squares, size_t argc)
 
 void draw(vector<Square> &squares)
 {
-	double length;
 	double x;
 	double y;
 	int html;
@@ -100,14 +99,14 @@ void draw(vector<Square> &squares)
 	{
 		Square tmp = squares[i];  // Not sure if this actually helps or not, but it reduces the number of accesses needed to the vector
 
-		length = tmp.getLength();
 		position = tmp.getPosition();
 		color = tmp.getColor();
 		x = position.getX();  // Would these two be a good case for pass by pointer?
 		y = position.getY();
 
-		xd = x - length;
-		yd = y - length;
+		//	The algebra for the following two lines is the same as using a temporary variable to get the length and using that for the y offset
+		xd = x - tmp.getLength();
+		yd = y - (x - xd);
 
 		html = color[0].HTML();
 
@@ -139,7 +138,6 @@ void draw(vector<Square> &squares)
 
 void draw(Circle &circle)
 {
-	//glBegin(GL_LINE_LOOP);
 	glBegin(GL_TRIANGLE_FAN);
 
 	double pi = 3.141592654;
@@ -197,3 +195,11 @@ void draw(Circle *circle, int argc)
 {
 
 }*/
+
+
+
+//	TODO:
+//	Profile and benchmark
+//	Get all of the functions in this file to match up with the "optimized" function
+//
+//

@@ -9,3 +9,9 @@ This software does not have any "official" support and anyone using this for any
 Presently capable of rendering:
 * Squares
 * Circles
+
+Requirements:
+* C++0x compiler
+* OpenGL/Mesa
+* GLFW
+* SOIL

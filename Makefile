@@ -1,9 +1,20 @@
 cc = g++ -std=c++0x
 deps = -lGL -lglfw -lSOIL
 flags = -c -Wall
-prof = -pg
 
 all: primitives unit
+
+clang: cc=clang++
+clang: all
+
+profile: flags = -c -Wall -pg
+profile: all
+
+optimize: flags = -c -Wall -O3
+optimize: all
+
+optimize-clang: flags = -c -Wall -O3
+optimize-clang: all
 
 primitives: main.o function_map.o
 	$(cc) -o main main.o function_map.o coordinate.o rgbcolor.o square.o circle.o draw.o primitive.o $(deps)

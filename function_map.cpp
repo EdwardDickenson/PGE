@@ -271,10 +271,9 @@ void render_chess_board()
 	glfwSetKeyCallback(window, controls);
 	glfwMakeContextCurrent(window);
 
-	double length_of_square = .001;
-
 	vector<Square> squares;
-	double xPos = -1;
+	double length_of_square = pow(2, -8);
+	double xPos;
 	double yPos = 1;
 	bool offset = false;
 

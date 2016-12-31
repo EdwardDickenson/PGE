@@ -32,16 +32,23 @@ void Coordinate::setY(double newY)
 	y = newY;
 }
 
+// Yes, there is some copy & paste code here, but it is so low level that it will not cause issues
 void Coordinate::setXY(double newX, double newY)
 {
-	setX(newX);
-	setY(newY);
+	x = newX;
+	y = newY;
 }
 
-void Coordinate::setXY(double newCoord)
+void Coordinate::setYX(double newY, double newX)
 {
-	setX(newCoord);
-	setY(newCoord);
+	y = newY;
+	x = newX;
+}
+
+void Coordinate::set(double newCoord)
+{
+	x = newCoord;
+	y = newCoord;
 }
 
 double Coordinate::distance(Coordinate other)

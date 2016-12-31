@@ -28,6 +28,7 @@ public:
 
 	void resize(double newRadius);
 	double volume();
+	bool inRegion(Coordinate point);
 };
 
 #endif // CIRCLE_HPP

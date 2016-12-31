@@ -1,11 +1,14 @@
 #include "unit.hpp"
 #include "rgbcolor/testrgbcolor.hpp"
 
+unsigned long long ntests;
+unsigned long long nfailed;
+
 int main(int argc, char *argv[])
 {
 	cout << "===\tStarting Tests\t===" << endl;
 
-	unsigned long long ntests = 0;
+	//unsigned long long ntests = 0;
 
 	//	Note that this file will only track unit tests which have failed and not those which passed
 	//	Also note that the last column in the csv file is the condiitional statement. Probably there is a better way of doing this.

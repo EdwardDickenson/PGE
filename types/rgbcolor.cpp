@@ -18,6 +18,13 @@ rgbColor::rgbColor(double red, double green, double blue)
 {
 	htmlColor = 0;
 
+	if(	red < 0.0 || green < 0.0 || blue < 0.0 ||
+		red > 1.0 || green > 1.0 || blue > 1.0)
+	{
+		htmlColor = 16777215;
+		return;
+	}
+
 	int htmlRed = int(red * 255); // Instead of multiplying, I could use bitshifting, booth's algorithm, to multiply but let's profile this first
 	int htmlGreen = int(green * 255);
 	int htmlBlue = int(blue * 255);
@@ -36,6 +43,13 @@ rgbColor::rgbColor(double red, double green, double blue)
 
 rgbColor::rgbColor(int red, int green, int blue)
 {
+	if(	red < 0 || green < 0 || blue < 0 ||
+		red > 255 || green > 255 || blue > 255)
+	{
+		htmlColor = 16777215;
+		return;
+	}
+
 	htmlColor = red;
 	htmlColor = htmlColor << 8;
 	htmlColor += green;
@@ -50,32 +64,32 @@ rgbColor::rgbColor(unsigned int html)
 
 double rgbColor::red()
 {
-	return double(((htmlColor & 16711680) >> 16) / 255); // Divide by 255 might be possible with bitshifting
+	return double((htmlColor & 16711680) >> 16) / 255.0;
 }
 
 double rgbColor::green()
 {
-	return double(((htmlColor & 65280) >> 8) / 255); // Divide by 255 might be possible with bitshifting
+	return double((htmlColor & 65280) >> 8) / 255.0;
 }
 
 double rgbColor::blue()
 {
-	return double(((htmlColor & 255)) / 255); // Divide by 255 might be possible with bitshifting
+	return double((htmlColor & 255)) / 255.0;
 }
 
 int rgbColor::HTMLRed()
 {
-	return ((htmlColor >> 16) & 255); // Write a unit test to see if the int will wrap around
+	return ((htmlColor >> 16) & 255);
 }
 
 int rgbColor::HTMLGreen()
 {
-	return ((htmlColor >> 8) & 255); // Write a unit test to see if the int will wrap around
+	return ((htmlColor >> 8) & 255);
 }
 
 int rgbColor::HTMLBlue()
 {
-	return (htmlColor & 255); // Write a unit test to see if the int will wrap around
+	return (htmlColor & 255);
 }
 
 int rgbColor::HTML()
@@ -103,7 +117,7 @@ void rgbColor::setBlue(double blue)
 	htmlColor = htmlColor & (16776960 | htmlBlue);
 }
 
-void rgbColor::setColor(double red, double green, double blue) // This implementation makes the code more brittle. However, since this will not be change again it will be OK.
+void rgbColor::setColor(double red, double green, double blue)
 {
 	int htmlRed = int(red * 255);
 	htmlRed = htmlRed << 16;
