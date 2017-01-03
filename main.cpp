@@ -72,8 +72,6 @@ int main(int argc, char *argv[])
 
 
 //	TODO:
-//	The work required to make a square grow and shrink, like in the growing
-//	square example, is greater than it may initially seem. Con sider writing a
-//	grow/shrink function in this class.
+//
 //
 //
