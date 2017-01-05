@@ -17,9 +17,18 @@ int main(int argc, char *argv[])
 	output << "time, test number, result" << endl;
 
 	output << "#===\tTesting rgbColor\t===" << endl;
+
 	output << "#Testing constructors" << endl;
 	test_rgb_constructors(fname);
 	output << "#Number of unit tests: " << ntests << endl;
+
+	output << "#Testing toString" << endl;
+	test_rgb_toString(fname);
+	output << "#Number of unit tests:" << ntests << endl;
+
+	output << "#Testing Mutators" << endl;
+	test_rgb_mutators(fname);
+	output << "#Number of unit tests:" << ntests << endl;
 
 	output.close();
 	cout << "===\tEnding Tests\t===" << endl;

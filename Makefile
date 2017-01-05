@@ -20,7 +20,7 @@ primitives: main.o function_map.o
 	$(cc) -o main main.o function_map.o coordinate.o rgbcolor.o square.o circle.o draw.o primitive.o $(deps)
 
 unit: unit.o
-	$(cc) -o unit/unit unit.o coordinate.o rgbcolor.o square.o circle.o primitive.o rgbconstructors.o $(deps)
+	$(cc) -o unit/unit unit.o coordinate.o rgbcolor.o square.o circle.o primitive.o rgbconstructors.o rgbtostring.o rgbmutators.o $(deps)
 
 main.o: main.cpp
 	$(cc) main.cpp $(flags)
@@ -49,11 +49,17 @@ circle.o: geometry/circle.* coordinate.o rgbcolor.o primitive.o
 primitive.o: geometry/primitive.* coordinate.o rgbcolor.o
 	$(cc) geometry/primitive.cpp $(flags)
 
-unit.o: rgbconstructors.o unit/unit.*
+unit.o: rgbconstructors.o rgbtostring.o rgbmutators.o unit/unit.*
 	$(cc) unit/unit.cpp $(flags)
 
 rgbconstructors.o: unit/rgbcolor/testrgbcolor.hpp unit/rgbcolor/rgbconstructors.cpp
 	$(cc) unit/rgbcolor/rgbconstructors.cpp $(flags)
+
+rgbtostring.o: unit/rgbcolor/testrgbcolor.hpp unit/rgbcolor/rgbtostring.cpp
+	$(cc) unit/rgbcolor/rgbtostring.cpp $(flags)
+
+rgbmutators.o: unit/rgbcolor/testrgbcolor.hpp unit/rgbcolor/rgbmutators.cpp
+	$(cc) unit/rgbcolor/rgbmutators.cpp $(flags)
 
 clean:
 	rm -rf *.o

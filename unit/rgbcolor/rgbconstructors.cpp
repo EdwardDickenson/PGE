@@ -3,8 +3,8 @@
 bool test_rgb_constructors(string fname)
 {
 	ofstream output(fname.c_str(), ios::app);
-	clock_t curr_time;
 	bool result = true;
+	clock_t curr_time;
 
 	rgbColor color;
 	rgbColor black(0.0, 0.0, 0.0);
@@ -37,6 +37,7 @@ bool test_rgb_constructors(string fname)
 	rgbColor tooBigHTMLBlue(0, 0, 1024);
 	rgbColor half(127, 127, 127);	//	Not going to go crazy on this one
 	rgbColor fromMask(half.HTML());
+	rgbColor fromString(half.toString());
 
 	++ntests;
 	for(int i = 0; i < 255; ++i)

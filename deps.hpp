@@ -3,6 +3,7 @@
 
 // C++ includes
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include <sstream>
 #include <list>

@@ -62,6 +62,11 @@ rgbColor::rgbColor(unsigned int html)
 	htmlColor = html;
 }
 
+rgbColor::rgbColor(string fromString)
+{
+
+}
+
 double rgbColor::red()
 {
 	return double((htmlColor & 16711680) >> 16) / 255.0;
@@ -151,7 +156,7 @@ void rgbColor::setHTMLBlue(int blue)
 	htmlColor = htmlColor | blue;
 }
 
-void rgbColor::setColor(int red, int blue, int green)
+void rgbColor::setColor(int red, int green, int blue)
 {
 	red = red << 16;
 	htmlColor = htmlColor & 65535;
@@ -170,20 +175,38 @@ void rgbColor::setHTML(unsigned int html)
 	htmlColor = html;
 }
 
-string rgbColor::html()
+string rgbColor::toString()
 {
 	stringstream  result;
 
-	int mask = 255;
-	int blue = htmlColor & mask;
-	mask = mask << 8;
-	int green = htmlColor & mask;
-	mask = mask << 8;
-	int red = htmlColor & mask;
+	int red = htmlColor & 16711680;
 	red = red >> 16;
+	int green = htmlColor & 65280;
 	green = green >> 8;
+	int blue = htmlColor & 255;
 
-	result << "#" << hex << red << green << blue;
+	result << "#";
+
+	if(red < 10)
+	{
+		result << 0;
+	}
+
+	result << hex << red;
+
+	if(green < 10)
+	{
+		result << 0;
+	}
+
+	result << hex << green;
+
+	if(blue < 10)
+	{
+		result << 0;
+	}
+
+	result << hex << blue;
 
 	return result.str();
 }

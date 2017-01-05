@@ -16,6 +16,7 @@ public:
 	rgbColor(double red, double green, double blue);
 	rgbColor(int red, int green, int blue);
 	rgbColor(unsigned int html);
+	rgbColor(string fromString);	//	Takes input from the toString function
 
 	double red();
 	double green();
@@ -34,8 +35,9 @@ public:
 	void setHTMLBlue(int blue);
 	void setColor(int red, int green, int blue);
 	void setHTML(unsigned int html);
+	void setString(string fromString);
 
-	string html();
+	string toString();
 };
 
 #endif	//	RGB_COLOR_HPP

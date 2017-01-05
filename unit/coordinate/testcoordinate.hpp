@@ -1,0 +1,13 @@
+#ifndef TESTCOORDINATE_HPP
+#define TESTCOORDINATE_HPP
+
+
+
+#endif	//	TESTCOORDINATE_HPP
+
+
+
+//	TODO:
+//
+//
+//
