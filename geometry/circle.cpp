@@ -4,34 +4,26 @@ Circle::Circle()
 {
 	radius = 0;
 
-	position.setX(0);
-	position.setY(0);
+	position.setX(0.0);
+	position.setY(0.0);
 
 	rgbColor tmp(1.0, 1.0, 1.0);
-	/*color[0] = tmp;
-	color[1] = tmp;
-	color[2] = tmp;
-	color[3] = tmp;*/
 }
 
 Circle::Circle(double defaultRadius, Coordinate defaultPosition)
 {
 	radius = defaultRadius;
-	position.setX(defaultPosition.getX());
-	position.setY(defaultPosition.getY());
+	position.setX(defaultPosition.getRelX());
+	position.setY(defaultPosition.getRelY());
 
 	rgbColor tmp(1.0, 1.0, 1.0);
-	/*color[0] = tmp;
-	color[1] = tmp;
-	color[2] = tmp;
-	color[3] = tmp;*/
 }
 
 Circle::Circle(double defaultRadius, Coordinate defaultPosition, rgbColor defaultColor)
 {
 	radius = defaultRadius;
-	position.setX(defaultPosition.getX());
-	position.setY(defaultPosition.getY());
+	position.setX(defaultPosition.getRelX());
+	position.setY(defaultPosition.getRelY());
 }
 
 double Circle::getRadius()
@@ -76,10 +68,10 @@ double Circle::volume()
 
 bool Circle::inRegion(Coordinate point)
 {
-	double w = point.getX();
-	double x = point.getY();
-	double y = position.getX();
-	double z = position.getY();
+	double w = point.getRelX();
+	double x = point.getRelY();
+	double y = position.getRelX();
+	double z = position.getRelY();
 
 	if(	w <= y && w >= (w - length) &&
 		x <= z && x >= (z - length))

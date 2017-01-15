@@ -104,7 +104,7 @@ void render_square_image()
 	glfwSetKeyCallback(window, bouncing_controls);
 	glfwMakeContextCurrent(window);
 
-	Square block(1, Coordinate(1, 1), rgbColor(1.0, 1.0, 1.0));
+	Square block(1, Coordinate(1.0, 1.0), rgbColor(1.0, 1.0, 1.0));
 
 	string fname;
 	cout << "Input the name of an image file: ";
@@ -157,35 +157,35 @@ void render_bouncing_square()
 	{
 		glClear(GL_COLOR_BUFFER_BIT); // Maybe this should be in corporated into the draw function
 		draw(block);
-		origin.setX(origin.getX() + xDisp);
-		origin.setY(origin.getY() - yDisp);
+		origin.setX(origin.getRelX() + xDisp);
+		origin.setY(origin.getRelY() - yDisp);
 		block.setPosition(origin);
 
-		if(origin.getX() > 1)
+		if(origin.getRelX() > 1)
 		{
 				xDisp = -xDisp;
-				points.push_back(Square(point_length, Coordinate(block.getPosition().getX() - point_length * 2, block.getPosition().getY()), rgbColor(1.0, 0.0, 0.0)));
+				points.push_back(Square(point_length, Coordinate(block.getPosition().getRelX() - point_length * 2, block.getPosition().getRelY()), rgbColor(255, 0, 0)));
 				cout << points.size() << endl;
 		}
 
-		if(origin.getY() > 1)
+		if(origin.getRelY() > 1)
 		{
 				yDisp = -yDisp;
-				points.push_back(Square(point_length, Coordinate(block.getPosition().getX(), block.getPosition().getY() - point_length * 2), rgbColor(1.0, 0.0, 0.0)));
+				points.push_back(Square(point_length, Coordinate(block.getPosition().getRelX(), block.getPosition().getRelY() - point_length * 2), rgbColor(255, 0, 0)));
 				cout << points.size() << endl;
 		}
 
-		if(origin.getX() - length < -1)
+		if(origin.getRelX() - length < -1)
 		{
 				xDisp = -xDisp;
-				points.push_back(Square(point_length, Coordinate(block.getPosition().getX(), block.getPosition().getY()), rgbColor(1.0, 0.0, 0.0)));
+				points.push_back(Square(point_length, Coordinate(block.getPosition().getRelX(), block.getPosition().getRelY()), rgbColor(255, 0, 0)));
 				cout << points.size() << endl;
 		}
 
-		if(origin.getY() - length < -1)
+		if(origin.getRelY() - length < -1)
 		{
 				yDisp = -yDisp;
-				points.push_back(Square(point_length, Coordinate(block.getPosition().getX(), block.getPosition().getY()), rgbColor(1.0, 0.0, 0.0)));
+				points.push_back(Square(point_length, Coordinate(block.getPosition().getRelX(), block.getPosition().getRelY()), rgbColor(255, 0, 0)));
 				cout << points.size() << endl;
 		}
 
@@ -277,7 +277,6 @@ void render_chess_board()
 	double yPos = 1;
 	bool offset = false;
 
-	rgbColor colors[4] = {rgbColor(1.0, 0.0, 0.0), rgbColor(1.0, 0.0, 0.0), rgbColor(1.0, 0.0, 0.0), rgbColor(1.0, 0.0, 0.0)};
 	int n = 0;
 
 	while(yPos >= -1)
@@ -291,7 +290,7 @@ void render_chess_board()
 
 		while(xPos <= 1)
 		{
-			squares.push_back(Square(length_of_square, Coordinate(xPos, yPos), colors));
+			squares.push_back(Square(length_of_square, Coordinate(xPos, yPos), rgbColor(1.0, 0.0, 0.0)));
 			xPos += (length_of_square * 2);
 			++n;
 		}
@@ -302,6 +301,9 @@ void render_chess_board()
 
 	cout << "Created a total of: " << n << " Squares" << endl;
 
+	unsigned int fps = 0;
+	double seconds = glfwGetTime();
+
 	while(!glfwWindowShouldClose(window))
 	{
 		glClear(GL_COLOR_BUFFER_BIT);
@@ -310,6 +312,15 @@ void render_chess_board()
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
+
+		++fps;
+
+		if(glfwGetTime() - seconds >= 1.0)
+		{
+			cout << "Frames per second: " << fps << endl;
+			fps = 0;
+			seconds = glfwGetTime();
+		}
 	}
 
 	glfwDestroyWindow(window);

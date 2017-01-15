@@ -11,23 +11,23 @@ void draw(Square &square)
 
 	double length = square.getLength();
 	Coordinate position = square.getPosition();
-	rgbColor *color = square.getColor();
-	double x = position.getX();
-	double y = position.getY();
+	rgbColor color = square.getColor();
+	double x = position.getRelX();
+	double y = position.getRelY();
 
-	glColor3d(color[0].red(), color[0].green(), color[0].blue());
+	glColor3d(color.red(), color.green(), color.blue());
 	glTexCoord2d(x, y);
 	glVertex2d(x, y);
 
-	glColor3d(color[1].red(), color[1].green(), color[1].blue());
+	glColor3d(color.red(), color.green(), color.blue());
 	glTexCoord2d(x - length, y);
 	glVertex2d(x - length, y);
 
-	glColor3d(color[2].red(), color[2].green(), color[2].blue());
+	glColor3d(color.red(), color.green(), color.blue());
 	glTexCoord2d(x - length, y - length);
 	glVertex2d(x - length, y - length);
 
-	glColor3d(color[3].red(), color[3].green(), color[3].blue());
+	glColor3d(color.red(), color.green(), color.blue());
 	glTexCoord2d(x, y - length);
 	glVertex2d(x, y - length);
 
@@ -45,7 +45,7 @@ void draw(Square *squares, size_t argc)
 
 	double length;
 	Coordinate position;
-	rgbColor *color;
+	rgbColor color;
 	double x;
 	double y;
 
@@ -54,22 +54,22 @@ void draw(Square *squares, size_t argc)
 		length = squares[i].getLength();
 		position = squares[i].getPosition();
 		color = squares[i].getColor();
-		x = position.getX();
-		y = position.getY();
+		x = position.getRelX();
+		y = position.getRelY();
 
-		glColor3d(color[0].red(), color[0].green(), color[0].blue());
+		glColor3d(color.red(), color.green(), color.blue());
 		glTexCoord2d(x, y);
 		glVertex2d(x, y);
 
-		glColor3d(color[1].red(), color[1].green(), color[1].blue());
+		glColor3d(color.red(), color.green(), color.blue());
 		glTexCoord2d(x - length, y);
 		glVertex2d(x - length, y);
 
-		glColor3d(color[2].red(), color[2].green(), color[2].blue());
+		glColor3d(color.red(), color.green(), color.blue());
 		glTexCoord2d(x - length, y - length);
 		glVertex2d(x - length, y - length);
 
-		glColor3d(color[3].red(), color[3].green(), color[3].blue());
+		glColor3d(color.red(), color.green(), color.blue());
 		glTexCoord2d(x, y - length);
 		glVertex2d(x, y - length);
 	}
@@ -85,7 +85,7 @@ void draw(vector<Square> &squares)
 	double xd; // X delta
 	double yd; // Y delta
 	Coordinate position;
-	rgbColor *color;
+	rgbColor color;
 	size_t size = squares.size();
 
 	glEnable(GL_TEXTURE_2D);
@@ -101,32 +101,26 @@ void draw(vector<Square> &squares)
 
 		position = tmp.getPosition();
 		color = tmp.getColor();
-		x = position.getX();  // Would these two be a good case for pass by pointer?
-		y = position.getY();
+		x = position.getRelX();  // Would these two be a good case for pass by pointer?
+		y = position.getRelY();
 
 		//	The algebra for the following two lines is the same as using a temporary variable to get the length and using that for the y offset
 		xd = x - tmp.getLength();
 		yd = y - (x - xd);
 
-		html = color[0].HTML();
+		html = color.HTML();
 
 		glColor3d(double(((html & 16711680) >> 16) / 255), double(((html & 65280) >> 8) / 255), double(((html & 255)) / 255));
 		glTexCoord2d(x, y);
 		glVertex2d(x, y);
 
-		html = color[1].HTML();
-
 		glColor3d(double(((html & 16711680) >> 16) / 255), double(((html & 65280) >> 8) / 255), double(((html & 255)) / 255));
 		glTexCoord2d(xd, y);
 		glVertex2d(xd, y);
 
-		html = color[2].HTML();
-
 		glColor3d(double(((html & 16711680) >> 16) / 255), double(((html & 65280) >> 8) / 255), double(((html & 255)) / 255));
 		glTexCoord2d(xd, yd);
 		glVertex2d(xd, yd);
-
-		html = color[3].HTML();
 
 		glColor3d(double(((html & 16711680) >> 16) / 255), double(((html & 65280) >> 8) / 255), double(((html & 255)) / 255));
 		glTexCoord2d(x, yd);
@@ -142,8 +136,8 @@ void draw(Circle &circle)
 
 	double pi = 3.141592654;
 	double radius = circle.getRadius();
-	double x = circle.getPosition().getX();
-	double y = circle.getPosition().getY();
+	double x = circle.getPosition().getRelX();
+	double y = circle.getPosition().getRelY();
 
 	// The reason why the following code is commented out is because I am not
 	// certain if rendering the circle with radians or degrees is faster, and I
@@ -179,8 +173,8 @@ void draw(Circle *circle, int argc)
 	for(int j = 0; j < argc; ++j)
 	{
 		double radius = circle[j].getRadius();
-		double x = circle[j].getPosition().getX();
-		double y = circle[j].getPosition().getY();
+		double x = circle[j].getPosition().getRelX();
+		double y = circle[j].getPosition().getRelY();
 
 		for(double i = 0; i < 2 * pi; i += .125)
 		{

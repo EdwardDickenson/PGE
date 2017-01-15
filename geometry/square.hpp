@@ -8,16 +8,15 @@
 class Square: public Primitive
 {
 private:
-	rgbColor color[4];
+	rgbColor color;
 
 public:
 
 	Square();
 	Square(double defaultLength, Coordinate defaultPosition);
 	Square(double defaultLength, Coordinate defaultPosition, rgbColor defaultColor);
-	Square(double defaultLength, Coordinate defaultPosition, rgbColor defaultColors[]);
 
-	rgbColor *getColor();
+	rgbColor getColor();
 	Coordinate getURight();
 	Coordinate getLRight();
 	Coordinate getLLeft();
@@ -27,10 +26,9 @@ public:
 	void setColor(rgbColor newColors[]);
 
 	void resize(double length);
+	void rotate(int degrees);
 	double volume();
 	bool inRegion(Coordinate point);
-
-	void draw();
 };
 
 #endif	//	SQUARE_HPP

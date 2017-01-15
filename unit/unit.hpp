@@ -6,13 +6,97 @@
 #include "../types/types.hpp"
 #include "../draw.hpp"
 
-extern unsigned long long ntests; // Number Of tests (total)
-extern unsigned long long nfailed; // Number of test which have failed
+template<class T>
+class UnitTest
+{
+private:
+	unsigned long long nTests;
+	unsigned long long nFailed;
+	ofstream output;
+	clock_t curr_time;
+	bool passedAll;	//	Passed all tests
+
+public:
+
+	UnitTest(string fname);
+	~UnitTest();
+
+	bool assertEquals(T a, T b, string expected);
+	bool assertNotEquals(T a, T b, string expected);
+	bool passed();
+	unsigned long long tested();	//	Not as much fun as it probably sounds like it should be
+	unsigned long long failed();
+};
+
+template<class T>
+UnitTest<T>::UnitTest(string fname)
+{
+	nTests = 0;
+	nFailed = 0;
+	output.open(fname.c_str(), ios::app);
+	passedAll = true;
+}
+
+template<class T>
+UnitTest<T>::~UnitTest()
+{
+	output.close();
+}
+
+template<class T>
+bool UnitTest<T>::assertEquals(T a, T b, string expected)
+{
+	++nTests;
+	if(a != b)
+	{
+		curr_time = clock();
+		++nFailed;
+		output << setprecision(4) << fixed << (((double)curr_time) / CLOCKS_PER_SEC) << "," << nTests << "," << expected << endl;
+		passedAll = false;
+		return false;
+	}
+
+	return true;
+}
+
+template<class T>
+bool UnitTest<T>::assertNotEquals(T a, T b, string expected)
+{
+	++nTests;
+	if(a == b)
+	{
+		curr_time = clock();
+		++nFailed;
+		output << setprecision(4) << fixed << (((double)curr_time) / CLOCKS_PER_SEC) << "," << nTests << "," << expected << endl;
+		passedAll = false;
+		return false;
+	}
+
+	return true;
+}
+
+template<class T>
+bool UnitTest<T>::passed()
+{
+	return passedAll;
+}
+
+template<class T>
+unsigned long long UnitTest<T>::tested()
+{
+	return nTests;
+}
+
+template<class T>
+unsigned long long UnitTest<T>::failed()
+{
+	return nFailed;
+}
 
 #endif // UNITS_HPP
 
 //	TODO:
-//	Write a unit test class which helps to cut down on the amount of copy paste code in the unit tests.
-//	Said class should be able to: log failed tests, the time that the occurred, the output of the test and the expected result into a file
+//	We already have an "expected" column for the output file, now include an "actual" column
+//
 //
 //

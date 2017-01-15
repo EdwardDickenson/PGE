@@ -18,11 +18,19 @@ rgbColor::rgbColor(double red, double green, double blue)
 {
 	htmlColor = 0;
 
-	if(	red < 0.0 || green < 0.0 || blue < 0.0 ||
-		red > 1.0 || green > 1.0 || blue > 1.0)
+	if(red < 0.0 || red > 1.0)
 	{
-		htmlColor = 16777215;
-		return;
+		red = 1.0;
+	}
+
+	if(green < 0.0 || green > 1.0)
+	{
+		green = 1.0;
+	}
+
+	if(blue < 0.0 || blue > 1.0)
+	{
+		blue = 1.0;
 	}
 
 	int htmlRed = int(red * 255); // Instead of multiplying, I could use bitshifting, booth's algorithm, to multiply but let's profile this first
@@ -43,11 +51,19 @@ rgbColor::rgbColor(double red, double green, double blue)
 
 rgbColor::rgbColor(int red, int green, int blue)
 {
-	if(	red < 0 || green < 0 || blue < 0 ||
-		red > 255 || green > 255 || blue > 255)
+	if(red < 0 || red > 255)
 	{
-		htmlColor = 16777215;
-		return;
+		red = 255;
+	}
+
+	if(green < 0 || green > 255)
+	{
+		green = 255;
+	}
+
+	if(blue < 0 || blue > 255)
+	{
+		blue = 255;
 	}
 
 	htmlColor = red;
@@ -64,7 +80,7 @@ rgbColor::rgbColor(unsigned int html)
 
 rgbColor::rgbColor(string fromString)
 {
-
+	htmlColor = strtoul(fromString.substr(1, fromString.length()).c_str(), NULL, 16);
 }
 
 double rgbColor::red()
@@ -104,40 +120,77 @@ int rgbColor::HTML()
 
 void rgbColor::setRed(double red)
 {
+	if(red < 0.0 || red > 1.0)
+	{
+		red = 1.0;
+	}
+
 	int htmlRed = int(red * 255);
 	htmlRed = htmlRed << 16;
-	htmlColor = htmlColor & (65535 | htmlRed);
+	htmlColor = (htmlColor & 65535) | htmlRed;
 }
 
 void rgbColor::setGreen(double green)
 {
+	if(green < 0.0 || green > 1.0)
+	{
+		green = 1.0;
+	}
+
 	int htmlGreen = int(green * 255);
 	htmlGreen = htmlGreen << 8;
-	htmlColor = htmlColor & (16711935 | htmlGreen);
+	htmlColor = (htmlColor & 16711935) | htmlGreen;
 }
 
 void rgbColor::setBlue(double blue)
 {
+	if(blue < 0.0 || blue > 1.0)
+	{
+		blue = 1.0;
+	}
+
 	int htmlBlue = int(blue * 255);
-	htmlColor = htmlColor & (16776960 | htmlBlue);
+	htmlColor = (htmlColor & 16776960) | htmlBlue;
 }
 
 void rgbColor::setColor(double red, double green, double blue)
 {
-	int htmlRed = int(red * 255);
-	htmlRed = htmlRed << 16;
-	htmlColor = htmlColor & (65535 | htmlRed);
+	if(red < 0.0 || red > 1.0)
+	{
+		red = 1.0;
+	}
 
-	int htmlGreen = int(green * 255);
-	htmlGreen = htmlGreen << 8;
-	htmlColor = htmlColor & (16711935 | htmlGreen);
+	if(green < 0.0 || green > 1.0)
+	{
+		green = 1.0;
+	}
 
-	int htmlBlue = int(blue * 255);
-	htmlColor = htmlColor & (16776960 | htmlBlue);
+	if(blue < 0.0 || blue > 1.0)
+	{
+		blue = 1.0;
+	}
+
+	htmlColor = 0;
+
+	int html = int(red * 255);
+	html = html << 16;
+	htmlColor += html;
+
+	html = int(green * 255);
+	html = html << 8;
+	htmlColor += html;
+
+	html = int(blue * 255);
+	htmlColor += html;
 }
 
 void rgbColor::setHTMLRed(int red)
 {
+	if(red < 0 || red > 255)
+	{
+		red = 255;
+	}
+
 	red = red << 16;
 	htmlColor = htmlColor & 65535;
 	htmlColor = htmlColor | red;
@@ -145,19 +198,50 @@ void rgbColor::setHTMLRed(int red)
 
 void rgbColor::setHTMLGreen(int green)
 {
+	if(green < 0 || green > 255)
+	{
+		green = 255;
+		return;
+	}
+
 	green = green << 8;
 	htmlColor = htmlColor & 16711935;
 	htmlColor = htmlColor | green;
+
+	/*green = green << 8;
+	htmlColor = htmlColor & 16711935;
+	htmlColor += green;*/
 }
 
 void rgbColor::setHTMLBlue(int blue)
 {
+	if(blue < 0 || blue > 255)
+	{
+		blue = 255;
+		return;
+	}
+
 	htmlColor = htmlColor & 16776960;
 	htmlColor = htmlColor | blue;
 }
 
 void rgbColor::setColor(int red, int green, int blue)
 {
+	if(red < 0 || red > 255)
+	{
+		red = 255;
+	}
+
+	if(green < 0 || green > 255)
+	{
+			green = 255;
+	}
+
+	if(blue < 0 || blue > 255)
+	{
+		blue = 255;
+	}
+
 	red = red << 16;
 	htmlColor = htmlColor & 65535;
 	htmlColor = htmlColor | red;
@@ -173,6 +257,11 @@ void rgbColor::setColor(int red, int green, int blue)
 void rgbColor::setHTML(unsigned int html)
 {
 	htmlColor = html;
+}
+
+void rgbColor::setString(string fromString)
+{
+	htmlColor = strtoul(fromString.substr(1, fromString.length()).c_str(), NULL, 16);
 }
 
 string rgbColor::toString()

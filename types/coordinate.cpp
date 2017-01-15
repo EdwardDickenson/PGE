@@ -2,8 +2,8 @@
 
 Coordinate::Coordinate()
 {
-	x = 0;
-	y = 0;
+	x = 0.0;
+	y = 0.0;
 }
 
 Coordinate::Coordinate(double defaultX, double defaultY)
@@ -12,12 +12,33 @@ Coordinate::Coordinate(double defaultX, double defaultY)
 	y = defaultY;
 }
 
-double Coordinate::getX()
+Coordinate::Coordinate(double coord)
+{
+	x = coord;
+	y = coord;
+}
+
+Coordinate::Coordinate(unsigned int defaultX, unsigned int defaultY)
+{
+
+}
+
+Coordinate::Coordinate(unsigned int coord)
+{
+
+}
+
+Coordinate::Coordinate(string fromString)
+{
+
+}
+
+double Coordinate::getRelX()
 {
 	return x;
 }
 
-double Coordinate::getY()
+double Coordinate::getRelY()
 {
 	return y;
 }
@@ -32,23 +53,41 @@ void Coordinate::setY(double newY)
 	y = newY;
 }
 
-// Yes, there is some copy & paste code here, but it is so low level that it will not cause issues
 void Coordinate::setXY(double newX, double newY)
 {
 	x = newX;
 	y = newY;
 }
 
-void Coordinate::setYX(double newY, double newX)
-{
-	y = newY;
-	x = newX;
-}
-
 void Coordinate::set(double newCoord)
 {
 	x = newCoord;
 	y = newCoord;
+}
+
+void Coordinate::setX(unsigned int newX)
+{
+
+}
+
+void Coordinate::setY(unsigned int newY)
+{
+
+}
+
+void Coordinate::setXY(unsigned int newX, unsigned int newY)
+{
+
+}
+
+void Coordinate::set(unsigned int coord)
+{
+
+}
+
+void Coordinate::setString(string fromString)
+{
+
 }
 
 double Coordinate::distance(Coordinate other)
@@ -59,4 +98,9 @@ double Coordinate::distance(Coordinate other)
 double Coordinate::slope(Coordinate other)
 {
 	return (y + other.y) / (x + other.x);
+}
+
+string Coordinate::toString()
+{
+	return "";
 }
