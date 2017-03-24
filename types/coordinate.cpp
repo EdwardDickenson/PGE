@@ -102,5 +102,5 @@ double Coordinate::slope(Coordinate other)
 
 string Coordinate::toString()
 {
-	return "";
+	return "(" + to_string(x) + "," + to_string(y) + ")";
 }

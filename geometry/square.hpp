@@ -22,9 +22,7 @@ public:
 	Coordinate getLLeft();
 	Coordinate getULeft();
 
-	void setColor(rgbColor newColor);
-	void setColor(rgbColor newColors[]);
-
+	void setColor(rgbColor &newColor);
 	void resize(double length);
 	void rotate(int degrees);
 	double volume();
@@ -38,5 +36,10 @@ public:
 //	TODO:
 //	Draw and coordinates have an issue with the scaling factor for windows that
 //	do not have symmetric dimensions.
+//
+//	Include an additional constructor and mutator which accepts as arguments the
+//	coordinates of the four points. An acceptable variation of this would be to
+//	include the diagonal from the UR point.
+//
 //
 //

@@ -1,7 +1,7 @@
 #include "draw.hpp"
 #include "types/types.hpp"
 
-double rate = .00390625;
+double rate = .00390625;	//	1/256 or 2^-8
 int texture[1];
 
 void controls(GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -48,6 +48,83 @@ int LoadGLTextures(string name) // Load Bitmaps And Convert To Textures
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
 
     return true;
+}
+
+void render_color_combinations()
+{
+	size_t W = 800;
+	size_t H = 800;
+
+	rgbColor red(0, 0, 0);
+	rgbColor green(0, 0, 0);
+	rgbColor blue(0, 0, 0);
+
+	Square redSquare(.5, Coordinate(-.25, .5));
+	Square greenSquare(.5, Coordinate(.25, .5));
+	Square blueSquare(.5, Coordinate(.75, .5));
+
+	if(!glfwInit())
+	{
+		cout << "Error initilizing GLFW" << endl;
+
+		return;
+	}
+
+	GLFWwindow *window;
+	window = glfwCreateWindow(W, H, "Primitives - Render Color Combinations", NULL, NULL);
+	glfwSetKeyCallback(window, controls);
+	glfwMakeContextCurrent(window);
+
+	while(!glfwWindowShouldClose(window))
+	{
+		for(int i = 0; i < 255; ++i)
+		{
+			for(int j = 0; j < 255; ++j)
+			{
+				for(int k = 0; k < 255; ++k)
+				{
+					glClear(GL_COLOR_BUFFER_BIT);
+
+					red.setHTMLRed(i);
+					green.setHTMLGreen(j);
+					blue.setHTMLBlue(k);
+
+					redSquare.setColor(red);
+					greenSquare.setColor(green);
+					blueSquare.setColor(blue);
+
+					draw(redSquare);
+					draw(greenSquare);
+					draw(blueSquare);
+
+					glfwSwapBuffers(window);
+					glfwPollEvents();
+
+					//	These three conditions are doing effectively the same thing as the while loop conditions.
+					//	Essentially, what's going on here is a cascading break statement for all three loops.
+					//	In the future, there should be an exit condition function which is tested.  This
+					//	will be implemented when the window functionality is encapsulated.
+					if(glfwWindowShouldClose(window))
+					{
+						break;
+					}
+				}
+
+				if(glfwWindowShouldClose(window))
+				{
+					break;
+				}
+			}
+
+			if(glfwWindowShouldClose(window))
+			{
+				break;
+			}
+		}
+	}
+
+		glfwDestroyWindow(window);
+		glfwTerminate();
 }
 
 void render_circle()
@@ -191,6 +268,8 @@ void render_bouncing_square()
 
 		draw(points);
 
+		glFlush();
+
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
@@ -213,6 +292,7 @@ void render_growing_square()
 	size_t H = 800;
 
 	window = glfwCreateWindow(W, H, "Primitives - Growing Square", NULL, NULL);
+	glfwSwapInterval(0);
 
 	glfwSetKeyCallback(window, controls);
 	glfwMakeContextCurrent(window);
@@ -245,6 +325,8 @@ void render_growing_square()
 			grow = !grow;
 		}
 
+		//glFinish();
+		//glFlush();
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
@@ -266,13 +348,15 @@ void render_chess_board()
 	size_t W = 800;
 	size_t H = 800;
 
+	glfwSwapInterval(0);
+	//#define _GLFW_USE_DWM_SWAP_INTERVAL 0
 	window = glfwCreateWindow(W, H, "Primitives - Chess Board", NULL, NULL);
 
 	glfwSetKeyCallback(window, controls);
 	glfwMakeContextCurrent(window);
 
 	vector<Square> squares;
-	double length_of_square = pow(2, -8);
+	double length_of_square = pow(2, -2);
 	double xPos;
 	double yPos = 1;
 	bool offset = false;
@@ -332,7 +416,8 @@ void(*functions[numberOfFunctions])() = {
 											&render_growing_square,
 											&render_bouncing_square,
 											&render_square_image,
-											&render_circle};
+											&render_circle,
+											&render_color_combinations};
 
 
 

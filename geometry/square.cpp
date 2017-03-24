@@ -32,6 +32,11 @@ void Square::resize(double newLength)
 	position.set(newLength / 2);
 }
 
+void Square::setColor(rgbColor &newColor)
+{
+	color = newColor;
+}
+
 rgbColor Square::getColor()
 {
 	return color;
@@ -59,6 +64,8 @@ Coordinate Square::getULeft()
 	Coordinate result(position.getRelX() - length, position.getRelY());
 	return result;
 }
+
+
 
 double Square::volume()
 {

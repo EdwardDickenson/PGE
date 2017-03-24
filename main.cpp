@@ -8,13 +8,16 @@ string names[numberOfFunctions] = {	"render_chess_board",
 			"render_growing_square",
 			"render_bouncing_square",
 			"render_square_image",
-			"render_circle"};
+			"render_circle",
+			"render_color_combinations"};
 
 //	Should be in a text file
 string descriptions[] = {	"render_chess_board: Renders a red and black chess board of dimensions equal to the window",
 							"render_growing_square: Renders a white square which expands to the edge of the screen and then shrinks back to darkness",
 							"render_bouncing_square: Renders a white square which bounces across the screen leaving red dots where it collides with the edge",
-							"render_square_image: Renders a square with an image"};
+							"render_square_image: Renders a square with an image",
+							"render_circle: Renders a white circle on a background of black",
+							"render_color_combinations: Renders a square which displays all combinations of rgb colors"};
 
 void print_descriptions()
 {
@@ -43,7 +46,7 @@ void cli()
 			running = false;
 		}
 
-		if(input == "print_descriptions")
+		if(input == "print_descriptions" || input == "help")
 		{
 				print_descriptions();
 		}

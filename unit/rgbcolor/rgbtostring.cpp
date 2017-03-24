@@ -1,6 +1,6 @@
 #include "testrgbcolor.hpp"
 
-bool test_rgb_toString(string fname)
+bool rgb_toString(string fname)
 {
 	ofstream output(fname.c_str(), ios::app);
 

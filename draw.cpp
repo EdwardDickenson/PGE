@@ -107,22 +107,25 @@ void draw(vector<Square> &squares)
 		//	The algebra for the following two lines is the same as using a temporary variable to get the length and using that for the y offset
 		xd = x - tmp.getLength();
 		yd = y - (x - xd);
-
 		html = color.HTML();
 
-		glColor3d(double(((html & 16711680) >> 16) / 255), double(((html & 65280) >> 8) / 255), double(((html & 255)) / 255));
+		int red = ((html & 16711680) >> 16);
+		int green = ((html & 65280) >> 8);
+		int blue = (html & 255);
+
+		glColor3ub(red, green, blue);
 		glTexCoord2d(x, y);
 		glVertex2d(x, y);
 
-		glColor3d(double(((html & 16711680) >> 16) / 255), double(((html & 65280) >> 8) / 255), double(((html & 255)) / 255));
+		glColor3ub(red, green, blue);
 		glTexCoord2d(xd, y);
 		glVertex2d(xd, y);
 
-		glColor3d(double(((html & 16711680) >> 16) / 255), double(((html & 65280) >> 8) / 255), double(((html & 255)) / 255));
+		glColor3ub(red, green, blue);
 		glTexCoord2d(xd, yd);
 		glVertex2d(xd, yd);
 
-		glColor3d(double(((html & 16711680) >> 16) / 255), double(((html & 65280) >> 8) / 255), double(((html & 255)) / 255));
+		glColor3ub(red, green, blue);
 		glTexCoord2d(x, yd);
 		glVertex2d(x, yd);
 	}

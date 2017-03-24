@@ -1,5 +1,7 @@
-#ifndef UNITS_HPP
-#define UNITS_HPP
+#ifndef UNIT_HPP
+#define UNIT_HPP
+
+#pragma once
 
 #include "../deps.hpp"
 #include "../geometry/geometry.hpp"
@@ -93,7 +95,7 @@ unsigned long long UnitTest<T>::failed()
 	return nFailed;
 }
 
-#endif // UNITS_HPP
+#endif // UNIT_HPP
 
 //	TODO:
 //	We already have an "expected" column for the output file, now include an "actual" column

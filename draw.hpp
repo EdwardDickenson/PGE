@@ -13,6 +13,10 @@ void draw(Circle *circles, int argc);
 void draw(vector<Circle> &circles);
 void draw(Circle &circle);
 
+void draw(Rectangle *rectangles, int argc);
+void draw(vector<Rectangle> &rectangles);
+void draw(Rectangle &rect);
+
 #endif // DRAW_HPP
 
 

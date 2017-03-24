@@ -1,10 +1,18 @@
 #include "testcoordinate.hpp"
 
-bool test_coordinate_toString(string fname)
+bool coordinate_toString(string fname)
 {
 	ofstream output(fname.c_str(), ios::app);
 
-	Coordinate origin;
+	Coordinate origin(0.0, 0.0);
+	Coordinate zeroOne(0.0, 1.0);
+	Coordinate oneZero(1.0, 0.0);
 
-	return true;
+	UnitTest<string> test(fname.c_str());
+
+	test.assertEquals(origin.toString(), "(0.000000,0.000000)", "origin.toString() != (0.000000,0.000000)");
+	test.assertEquals(zeroOne.toString(), "(0.000000,1.000000)", "zeroOne.toString() != (0.000000,1.000000)");
+	test.assertEquals(oneZero.toString(), "(1.000000,0.000000)", "oneZero.toString() != (1.000000,0.000000)");
+
+	return test.passed();
 }

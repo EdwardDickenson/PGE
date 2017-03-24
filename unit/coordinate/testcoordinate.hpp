@@ -3,9 +3,9 @@
 
 #include "../unit.hpp"
 
-bool test_coordinate_constructor(string fname);
-bool test_coordinate_toString(string fname);
-bool test_coordinate_mutator(string fname);
+bool coordinate_constructors(string fname);
+bool coordinate_toString(string fname);
+bool coordinate_mutator(string fname);
 
 #endif	//	TESTCOORDINATE_HPP
 

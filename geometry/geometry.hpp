@@ -5,6 +5,7 @@
 
 #include "square.hpp"
 #include "circle.hpp"
+#include "rectangle.hpp"
 
 class Square;
 class Circle;
