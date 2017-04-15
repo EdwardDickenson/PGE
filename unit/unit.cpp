@@ -46,7 +46,11 @@ int main(int argc, char *argv[])
 		output << "#Error checking coordinate toString" << endl;
 	}
 
-	
+	output << "#Testing coordinate mutators" << endl;
+	if(!coordinate_mutators(fname))
+	{
+		output << "#Error checking coordinate mutators" << endl;
+	}
 
 	output.close();
 	cout << "===\tEnding Tests\t===" << endl;

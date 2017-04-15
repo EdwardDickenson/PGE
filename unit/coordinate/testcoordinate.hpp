@@ -5,7 +5,7 @@
 
 bool coordinate_constructors(string fname);
 bool coordinate_toString(string fname);
-bool coordinate_mutator(string fname);
+bool coordinate_mutators(string fname);
 
 #endif	//	TESTCOORDINATE_HPP
 

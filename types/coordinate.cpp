@@ -30,7 +30,7 @@ Coordinate::Coordinate(unsigned int coord)
 
 Coordinate::Coordinate(string fromString)
 {
-
+	
 }
 
 double Coordinate::getRelX()

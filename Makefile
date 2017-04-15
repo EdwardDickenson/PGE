@@ -68,9 +68,9 @@ primitive.o: geometry/primitive.* coordinate.o rgbcolor.o
 unit.o: unit/unit.*
 	$(cc) $(flags) unit/unit.cpp
 
-tests.o: rgbconstructors.o rgbtostring.o rgbmutators.o coordinatetostring.o coordinateconstructors.o
-	ld -r rgbconstructors.o rgbtostring.o rgbmutators.o coordinatetostring.o coordinateconstructors.o -o tests.o
-	rm rgbconstructors.o rgbtostring.o rgbmutators.o coordinatetostring.o coordinateconstructors.o
+tests.o: rgbconstructors.o rgbtostring.o rgbmutators.o coordinatetostring.o coordinateconstructors.o coordinatemutators.o
+	ld -r rgbconstructors.o rgbtostring.o rgbmutators.o coordinatetostring.o coordinateconstructors.o coordinatemutators.o -o tests.o
+	rm rgbconstructors.o rgbtostring.o rgbmutators.o coordinatetostring.o coordinateconstructors.o coordinatemutators.o
 
 rgbconstructors.o: unit/unit.* unit/rgbcolor/testrgbcolor.hpp unit/rgbcolor/rgbconstructors.cpp
 	$(cc) $(flags) unit/rgbcolor/rgbconstructors.cpp
@@ -86,6 +86,9 @@ coordinatetostring.o: unit/unit.* unit/coordinate/testcoordinate.hpp unit/coordi
 
 coordinateconstructors.o: unit/unit.* unit/coordinate/testcoordinate.hpp unit/coordinate/coordinateconstructors.cpp
 	$(cc) $(flags) unit/coordinate/coordinateconstructors.cpp
+
+coordinatemutators.o: unit/unit.* unit/coordinate/testcoordinate.hpp unit/coordinate/coordinatemutators.cpp
+	$(cc) $(flags) unit/coordinate/coordinatemutators.cpp
 
 bench.o: bench/bench.*
 	$(cc) $(flags) bench/bench.cpp
