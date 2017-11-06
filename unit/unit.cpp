@@ -61,6 +61,6 @@ int main(int argc, char *argv[])
 
 
 //	TODO:
-//	Test coordinate
+//	The unit tests should be categorized by class
 //
 //

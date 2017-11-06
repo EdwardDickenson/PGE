@@ -30,7 +30,7 @@ Coordinate::Coordinate(unsigned int coord)
 
 Coordinate::Coordinate(string fromString)
 {
-	
+
 }
 
 double Coordinate::getRelX()
@@ -41,6 +41,11 @@ double Coordinate::getRelX()
 double Coordinate::getRelY()
 {
 	return y;
+}
+
+int Coordinate::getX()
+{
+	return 0;
 }
 
 void Coordinate::setX(double newX)

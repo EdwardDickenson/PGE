@@ -2,16 +2,17 @@
 
 bool coordinate_constructors(string fname)
 {
-	UnitTest<string> test(fname.c_str());
+	UnitTest<int> test(fname.c_str());
 	Coordinate origin;
-	Coordinate oneOne(1.0, 1.0);
+	//Coordinate oneOne(1, 1);
 
-	test.assertEquals(origin.toString(), "(0.000000,0.000000)", "Coordinate not zero at creation");
-	test.assertEquals(oneOne.toString(), "(1.000000,1.000000)", "Coordinate not one at creation");
+	//est.assertEquals(origin.getX(), 0, "X coordinate not 0 at start");
+	//test.assertEquals(origin.getY(), 0, "Y coordinate not 0 at start");
+	//test.assertEquals(oneOne.getX(), 1, "X coordinate not 1 for Coordinate(int, int) ");
+	//test.assertEquals(oneOne.getY(), 1, "Y coordinate not 1 for Coordinate(int, int) ");
 
 	return test.passed();
 }
-
 
 
 //	TODO:

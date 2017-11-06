@@ -11,20 +11,31 @@ private:
 	double y;
 	unsigned int position;
 
+	//
+	//unsigned int width;	//	Should also be 16-bit
+	//unsigned int height;	//	Should also be 16-bit
+
 public:
 
+	//	Constructors
 	Coordinate();
 	Coordinate(double defaultX, double defaultY);
 	Coordinate(double coord);
 	Coordinate(unsigned int defaultX, unsigned int defaultY);
 	Coordinate(unsigned int coord);
+	//Coordinate(unsigned int defaultX, unsigned int defaultY, unsigned int defaultHeight, unsigned int defaultWidth);
 	Coordinate(string fromString);
 
+	//	Accessors
 	double getRelX();
 	double getRelY();
-	int getX();
+	int getX();	//	These should all be unsigned ints as well
 	int getY();
 	int getXY();
+	//unsigned int getWidth();
+	//unsigned int getHeight();
+
+	//	Mutators
 	void setX(double newX);
 	void setY(double newY);
 	void setXY(double newX, double newY);
@@ -35,6 +46,7 @@ public:
 	void set(unsigned int coord);
 	void setString(string fromString);
 
+	//	Operators
 	double distance(Coordinate other);
 	double slope(Coordinate other);
 
